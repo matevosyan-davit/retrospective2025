@@ -1,0 +1,259 @@
+import { Text, View } from 'react-native';
+import styled from 'styled-components/native';
+import { LinearGradient } from 'expo-linear-gradient';
+
+const Container = styled(LinearGradient).attrs({
+  colors: ['#1B2A7C', '#0A1B5C'],
+  locations: [0, 1],
+})`
+  flex: 1;
+  padding-top: 80px;
+  padding-horizontal: 24px;
+`;
+
+const FlameContainer = styled.View`
+  align-items: center;
+  margin-bottom: 40px;
+`;
+
+const FlameOuter = styled.View`
+  width: 90px;
+  height: 110px;
+  background-color: #8BA3E8;
+  border-radius: 45px 45px 0 0;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
+
+const FlameInner = styled.View`
+  width: 70px;
+  height: 90px;
+  background-color: #FF6B9D;
+  border-radius: 35px 35px 0 0;
+  position: absolute;
+  bottom: 0;
+`;
+
+const FlameCore = styled.View`
+  width: 50px;
+  height: 70px;
+  background-color: #FF8EB5;
+  border-radius: 25px 25px 0 0;
+  position: absolute;
+  bottom: 5px;
+`;
+
+const HeadlineContainer = styled.View`
+  margin-bottom: 30px;
+`;
+
+const HeadlineText = styled.Text`
+  font-size: 28px;
+  font-weight: 800;
+  color: #FFFFFF;
+  text-align: left;
+  line-height: 34px;
+`;
+
+const WeeksContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 50px;
+`;
+
+const WeeksCard = styled.View`
+  background-color: #FF6B9D;
+  border-radius: 16px;
+  padding: 32px;
+  transform: rotate(-8deg);
+  shadow-color: #000;
+  shadow-offset: 0px 8px;
+  shadow-opacity: 0.4;
+  shadow-radius: 10px;
+  elevation: 10;
+  min-width: 140px;
+`;
+
+const WeeksNumber = styled.Text`
+  font-size: 80px;
+  font-weight: 900;
+  color: #0A1B5C;
+  line-height: 80px;
+  text-align: center;
+`;
+
+const WeeksLabel = styled.Text`
+  font-size: 24px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-left: 20px;
+  flex: 1;
+`;
+
+const BadgeSection = styled.View`
+  margin-bottom: 40px;
+`;
+
+const BadgeLabel = styled.Text`
+  font-size: 26px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+`;
+
+const BadgeCard = styled.View`
+  background-color: #8BA3E8;
+  border-radius: 12px;
+  padding: 24px 32px;
+  shadow-color: #000;
+  shadow-offset: 0px 6px;
+  shadow-opacity: 0.4;
+  shadow-radius: 8px;
+  elevation: 8;
+  align-self: flex-start;
+`;
+
+const BadgeText = styled.Text`
+  font-size: 32px;
+  font-weight: 900;
+  color: #0A1B5C;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+`;
+
+
+const StarsContainer = styled.View`
+  position: absolute;
+  bottom: 100px;
+  right: 30px;
+`;
+
+const Star = styled.View`
+  position: absolute;
+`;
+
+const Star1 = styled(Star)`
+  right: 0px;
+  bottom: 0px;
+`;
+
+const Star2 = styled(Star)`
+  right: 60px;
+  bottom: 40px;
+`;
+
+const Star3 = styled(Star)`
+  right: 20px;
+  bottom: 80px;
+`;
+
+const StarShape = styled.View`
+  width: 0;
+  height: 0;
+  background-color: transparent;
+  border-style: solid;
+`;
+
+const StarPoint1 = styled(StarShape)`
+  border-left-width: 8px;
+  border-right-width: 8px;
+  border-bottom-width: 14px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: #FFFFFF;
+`;
+
+const StarPoint2 = styled(StarShape)`
+  border-left-width: 8px;
+  border-right-width: 8px;
+  border-top-width: 14px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: #FFFFFF;
+  margin-top: -6px;
+`;
+
+const StarComponent = () => (
+  <View>
+    <StarPoint1 />
+    <StarPoint2 />
+  </View>
+);
+
+const BottomTextContainer = styled.View`
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  padding-horizontal: 24px;
+`;
+
+const BottomText = styled.Text`
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+`;
+
+interface Slide8StreaksProps {
+  flammesWeeks: number;
+  flammeBadge: string;
+}
+
+export default function Slide8Streaks({
+  flammesWeeks = 32,
+  flammeBadge = 'DIAMANT - KEEPER ÉTERNEL',
+}: Slide8StreaksProps) {
+  return (
+    <Container>
+      {/* Flame icon at top */}
+      <FlameContainer>
+        <FlameOuter>
+          <FlameInner>
+            <FlameCore />
+          </FlameInner>
+        </FlameOuter>
+      </FlameContainer>
+
+      {/* Headline */}
+      <HeadlineContainer>
+        <HeadlineText>Votre record de flammes est de</HeadlineText>
+      </HeadlineContainer>
+
+      {/* Weeks card */}
+      <WeeksContainer>
+        <WeeksCard>
+          <WeeksNumber>{flammesWeeks}</WeeksNumber>
+        </WeeksCard>
+        <WeeksLabel>semaines{'\n'}consécutives.</WeeksLabel>
+      </WeeksContainer>
+
+      {/* Badge section */}
+      <BadgeSection>
+        <BadgeLabel>Vous avez atteint le badge</BadgeLabel>
+        <BadgeCard>
+          <BadgeText>{flammeBadge}</BadgeText>
+        </BadgeCard>
+      </BadgeSection>
+
+      {/* Stars */}
+      <StarsContainer>
+        <Star1>
+          <StarComponent />
+        </Star1>
+        <Star2>
+          <StarComponent />
+        </Star2>
+        <Star3>
+          <StarComponent />
+        </Star3>
+      </StarsContainer>
+
+      {/* Bottom message */}
+      <BottomTextContainer>
+        <BottomText>Respect ! 👑</BottomText>
+      </BottomTextContainer>
+    </Container>
+  );
+}
