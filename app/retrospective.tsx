@@ -1,16 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { View, Pressable } from 'react-native';
 import styled from 'styled-components/native';
 import { useRouter } from 'expo-router';
 import { X } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  withSpring,
-  Easing
-} from 'react-native-reanimated';
 import Slide1Intro from '@/components/retrospective/Slide1Intro';
 import Slide2Parcels from '@/components/retrospective/Slide2Parcels';
 import Slide3Carrier from '@/components/retrospective/Slide3Carrier';
@@ -48,9 +41,12 @@ interface ProgressBarProps {
   isActive: boolean;
 }
 
-const ProgressBarBase = styled(Animated.View)`
+const ProgressBar = styled.View<ProgressBarProps>`
   flex: 1;
   height: 3px;
+  background-color: ${(props: ProgressBarProps) =>
+    props.isActive ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.3)'
+  };
   border-radius: 2px;
 `;
 
@@ -85,40 +81,9 @@ const TapZoneRight = styled(Pressable)`
   flex: 2;
 `;
 
-const SlideContainer = styled(Animated.View)`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
-// Animated Progress Bar Component
-function AnimatedProgressBar({ isActive }: { isActive: boolean }) {
-  const opacityValue = useSharedValue(isActive ? 0.9 : 0.3);
-
-  useEffect(() => {
-    opacityValue.value = withTiming(isActive ? 0.9 : 0.3, {
-      duration: 300,
-      easing: Easing.inOut(Easing.ease),
-    });
-  }, [isActive]);
-
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      backgroundColor: `rgba(255, 255, 255, ${opacityValue.value})`,
-    };
-  });
-
-  return <ProgressBarBase style={animatedStyle} />;
-}
-
 export default function RetrospectiveScreen() {
   const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  // Animation values
-  const opacity = useSharedValue(1);
-  const translateX = useSharedValue(0);
-  const scale = useSharedValue(1);
 
   const totalSlides = 12;
 
@@ -139,41 +104,6 @@ export default function RetrospectiveScreen() {
       handleClose();
     }
   };
-
-  // Trigger animation when slide changes
-  useEffect(() => {
-    // Fade out and slide
-    opacity.value = 0;
-    translateX.value = 50;
-    scale.value = 0.95;
-
-    // Fade in and slide back with smooth timing
-    opacity.value = withTiming(1, {
-      duration: 500,
-      easing: Easing.out(Easing.cubic),
-    });
-
-    translateX.value = withSpring(0, {
-      damping: 20,
-      stiffness: 90,
-    });
-
-    scale.value = withSpring(1, {
-      damping: 15,
-      stiffness: 100,
-    });
-  }, [currentSlide]);
-
-  // Animated style for smooth transitions
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      opacity: opacity.value,
-      transform: [
-        { translateX: translateX.value },
-        { scale: scale.value },
-      ],
-    };
-  });
 
   const renderSlide = () => {
     switch (currentSlide) {
@@ -211,7 +141,7 @@ export default function RetrospectiveScreen() {
       <Gradient>
         <ProgressContainer>
           {Array.from({ length: totalSlides }).map((_, index) => (
-            <AnimatedProgressBar key={index} isActive={index <= currentSlide} />
+            <ProgressBar key={index} isActive={index <= currentSlide} />
           ))}
         </ProgressContainer>
 
@@ -224,9 +154,7 @@ export default function RetrospectiveScreen() {
           <TapZoneRight onPress={goToNext} />
         </TapZonesContainer>
 
-        <SlideContainer style={animatedStyle}>
-          {renderSlide()}
-        </SlideContainer>
+        {renderSlide()}
       </Gradient>
     </Container>
   );
