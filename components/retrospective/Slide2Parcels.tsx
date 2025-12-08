@@ -1,4 +1,4 @@
-import { Text } from 'react-native';
+import { Text, Image } from 'react-native';
 import styled from 'styled-components/native';
 import * as Animatable from 'react-native-animatable';
 
@@ -82,43 +82,6 @@ const HeartSmall = styled(Heart)`
   opacity: 0.9;
 `;
 
-const ParcelBox = styled.View`
-  width: 80px;
-  height: 80px;
-  background-color: #FF8E7A;
-  border-radius: 12px;
-  justify-content: center;
-  align-items: center;
-  border-width: 3px;
-  border-color: #FF6B5C;
-  shadow-color: #000;
-  shadow-offset: 0px 4px;
-  shadow-opacity: 0.3;
-  shadow-radius: 6px;
-  elevation: 6;
-`;
-
-const Eyes = styled.View`
-  flex-direction: row;
-  gap: 16px;
-`;
-
-const Eye = styled.View`
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  background-color: #FFFFFF;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Pupil = styled.View`
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  background-color: #000000;
-`;
-
 const BottomTextContainer = styled(Animatable.View)`
   padding-horizontal: 16px;
 `;
@@ -184,16 +147,11 @@ export default function Slide2Parcels({ parcelsDelivered = 560, topPercentage = 
               <HeartSmall>❤️</HeartSmall>
             </HeartsContainer>
 
-            <ParcelBox>
-              <Eyes>
-                <Eye>
-                  <Pupil />
-                </Eye>
-                <Eye>
-                  <Pupil />
-                </Eye>
-              </Eyes>
-            </ParcelBox>
+            <Image
+              source={require('@/assets/images/colis_rose.png')}
+              style={{ width: 120, height: 120 }}
+              resizeMode="contain"
+            />
           </Parcel>
         </ParcelContainer>
       </DecorationArea>
