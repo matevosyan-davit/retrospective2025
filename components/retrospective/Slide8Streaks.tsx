@@ -237,19 +237,6 @@ export default function Slide8Streaks({
         </BadgeCard>
       </BadgeSection>
 
-      {/* Stars */}
-      <StarsContainer>
-        <Star1>
-          <StarComponent />
-        </Star1>
-        <Star2>
-          <StarComponent />
-        </Star2>
-        <Star3>
-          <StarComponent />
-        </Star3>
-      </StarsContainer>
-
       {/* Bottom message */}
       <BottomTextContainer>
         <BottomText>
