@@ -1,6 +1,16 @@
 import { Text, View } from 'react-native';
+import { useEffect } from 'react';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+  withDelay,
+  withRepeat,
+  withSequence,
+} from 'react-native-reanimated';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#1B2A7C', '#0A1B5C'],
@@ -11,7 +21,7 @@ const Container = styled(LinearGradient).attrs({
   padding-horizontal: 24px;
 `;
 
-const MagnifyingGlassContainer = styled.View`
+const MagnifyingGlassContainer = styled(Animated.View)`
   align-items: center;
   margin-bottom: 30px;
 `;
@@ -107,12 +117,11 @@ const MetricLabel = styled.Text`
   line-height: 24px;
 `;
 
-const MetricCard = styled.View`
+const MetricCard = styled(Animated.View)`
   background-color: #8BA3E8;
   border-radius: 12px;
   padding: 12px 20px;
   min-width: 90px;
-  transform: rotate(3deg);
   shadow-color: #000;
   shadow-offset: 0px 4px;
   shadow-opacity: 0.3;
@@ -148,7 +157,7 @@ const MetricSubtext = styled.Text`
 `;
 
 
-const BottomTextContainer = styled.View`
+const BottomTextContainer = styled(Animated.View)`
   position: absolute;
   bottom: 50px;
   left: 0;
@@ -179,6 +188,88 @@ export default function Slide10Metrics({
   parcelsDelivered = 100,
   topPercentage = 10,
 }: Slide10MetricsProps) {
+  // Animation values
+  const magnifyingGlassTranslateY = useSharedValue(0);
+  const magnifyingGlassRotation = useSharedValue(0);
+  const metricCard1Scale = useSharedValue(0.6);
+  const metricCard1Rotation = useSharedValue(-5);
+  const metricCard2Scale = useSharedValue(0.6);
+  const metricCard2Rotation = useSharedValue(-5);
+  const metricCard3Scale = useSharedValue(0.6);
+  const metricCard3Rotation = useSharedValue(-5);
+  const footerOpacity = useSharedValue(0);
+
+  useEffect(() => {
+    // Magnifying glass mascot: floating loop with rotation oscillation
+    magnifyingGlassTranslateY.value = withDelay(
+      300,
+      withRepeat(
+        withSequence(
+          withTiming(-8, { duration: 1500 }),
+          withTiming(0, { duration: 1500 })
+        ),
+        -1,
+        false
+      )
+    );
+    magnifyingGlassRotation.value = withDelay(
+      400,
+      withRepeat(
+        withSequence(
+          withTiming(-3, { duration: 2000 }),
+          withTiming(3, { duration: 2000 })
+        ),
+        -1,
+        true
+      )
+    );
+
+    // Metric cards: scale-in with rotation and spring bounce, staggered
+    metricCard1Scale.value = withDelay(200, withSpring(1, { damping: 10, stiffness: 100 }));
+    metricCard1Rotation.value = withDelay(200, withTiming(3, { duration: 600 }));
+
+    metricCard2Scale.value = withDelay(400, withSpring(1, { damping: 10, stiffness: 100 }));
+    metricCard2Rotation.value = withDelay(400, withTiming(-3, { duration: 600 }));
+
+    metricCard3Scale.value = withDelay(600, withSpring(1, { damping: 10, stiffness: 100 }));
+    metricCard3Rotation.value = withDelay(600, withTiming(3, { duration: 600 }));
+
+    // Footer: fade-in with delay
+    footerOpacity.value = withDelay(1000, withTiming(1, { duration: 400 }));
+  }, []);
+
+  const magnifyingGlassStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateY: magnifyingGlassTranslateY.value },
+      { rotate: `${magnifyingGlassRotation.value}deg` },
+    ],
+  }));
+
+  const metricCard1Style = useAnimatedStyle(() => ({
+    transform: [
+      { scale: metricCard1Scale.value },
+      { rotate: `${metricCard1Rotation.value}deg` },
+    ],
+  }));
+
+  const metricCard2Style = useAnimatedStyle(() => ({
+    transform: [
+      { scale: metricCard2Scale.value },
+      { rotate: `${metricCard2Rotation.value}deg` },
+    ],
+  }));
+
+  const metricCard3Style = useAnimatedStyle(() => ({
+    transform: [
+      { scale: metricCard3Scale.value },
+      { rotate: `${metricCard3Rotation.value}deg` },
+    ],
+  }));
+
+  const footerStyle = useAnimatedStyle(() => ({
+    opacity: footerOpacity.value,
+  }));
+
   // Calculate contact rate percentage
   const contactRate = (serviceContacts / parcelsDelivered) * 100;
 
@@ -205,7 +296,7 @@ export default function Slide10Metrics({
   return (
     <Container>
       {/* Magnifying glass at top */}
-      <MagnifyingGlassContainer>
+      <MagnifyingGlassContainer style={magnifyingGlassStyle}>
         <MagnifyingGlassWrapper>
           <GlassCircleOuter>
             <GlassCircleInner />
@@ -235,7 +326,7 @@ export default function Slide10Metrics({
         {/* Success rate */}
         <MetricRow>
           <MetricLabel>Taux de succès{'\n'}livraison :</MetricLabel>
-          <MetricCard>
+          <MetricCard style={metricCard1Style}>
             <MetricUnit>%</MetricUnit>
             <MetricValue>{successRate}</MetricValue>
           </MetricCard>
@@ -244,7 +335,7 @@ export default function Slide10Metrics({
         {/* Delivery speed */}
         <MetricRow>
           <MetricLabel>Rapidité de{'\n'}livraison :</MetricLabel>
-          <MetricCard>
+          <MetricCard style={metricCard2Style}>
             <MetricValue>{deliverySpeedHours}</MetricValue>
             <MetricSubtext>heures (en{'\n'}moyenne)</MetricSubtext>
           </MetricCard>
@@ -253,14 +344,14 @@ export default function Slide10Metrics({
         {/* Service contacts */}
         <MetricRow>
           <MetricLabel>Nombre de{'\n'}contact au{'\n'}service client :</MetricLabel>
-          <MetricCard>
+          <MetricCard style={metricCard3Style}>
             <MetricValue>{serviceContacts}</MetricValue>
           </MetricCard>
         </MetricRow>
       </MetricsContainer>
 
       {/* Bottom messages */}
-      <BottomTextContainer>
+      <BottomTextContainer style={footerStyle}>
         <BottomText>{performanceMessage}</BottomText>
         <BottomText style={{ marginTop: 12 }}>{achievementMessage}</BottomText>
       </BottomTextContainer>

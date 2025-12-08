@@ -1,6 +1,16 @@
 import { Text, View } from 'react-native';
+import { useEffect } from 'react';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+  withDelay,
+  withRepeat,
+  withSequence,
+} from 'react-native-reanimated';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#1B2A7C', '#0A1B5C'],
@@ -11,7 +21,7 @@ const Container = styled(LinearGradient).attrs({
   padding-horizontal: 24px;
 `;
 
-const FlameContainer = styled.View`
+const FlameContainer = styled(Animated.View)`
   align-items: center;
   margin-bottom: 30px;
 `;
@@ -44,7 +54,7 @@ const FlameCore = styled.View`
   bottom: 5px;
 `;
 
-const HeadlineContainer = styled.View`
+const HeadlineContainer = styled(Animated.View)`
   margin-bottom: 25px;
 `;
 
@@ -62,11 +72,10 @@ const WeeksContainer = styled.View`
   margin-bottom: 35px;
 `;
 
-const WeeksCard = styled.View`
+const WeeksCard = styled(Animated.View)`
   background-color: #FF6B9D;
   border-radius: 16px;
   padding: 32px;
-  transform: rotate(-8deg);
   shadow-color: #000;
   shadow-offset: 0px 8px;
   shadow-opacity: 0.4;
@@ -102,7 +111,7 @@ const BadgeLabel = styled.Text`
   margin-bottom: 14px;
 `;
 
-const BadgeCard = styled.View`
+const BadgeCard = styled(Animated.View)`
   background-color: #8BA3E8;
   border-radius: 12px;
   padding: 18px 24px;
@@ -181,7 +190,7 @@ const StarComponent = () => (
   </View>
 );
 
-const BottomTextContainer = styled.View`
+const BottomTextContainer = styled(Animated.View)`
   position: absolute;
   bottom: 30px;
   left: 0;
@@ -205,10 +214,92 @@ export default function Slide8Streaks({
   flammesWeeks = 32,
   flammeBadge = 'DIAMANT - KEEPER ÉTERNEL',
 }: Slide8StreaksProps) {
+  // Animation values
+  const headlineOpacity = useSharedValue(0);
+  const headlineTranslateY = useSharedValue(10);
+  const weeksCardScale = useSharedValue(0.6);
+  const weeksCardRotation = useSharedValue(-5);
+  const badgeCardScale = useSharedValue(0.6);
+  const badgeCardRotation = useSharedValue(-5);
+  const flameTranslateY = useSharedValue(0);
+  const flameRotation = useSharedValue(0);
+  const footerOpacity = useSharedValue(0);
+
+  useEffect(() => {
+    // Headline: fade-in + upward motion
+    headlineOpacity.value = withTiming(1, { duration: 400 });
+    headlineTranslateY.value = withTiming(0, { duration: 400 });
+
+    // Weeks card: scale-in with rotation and spring bounce
+    weeksCardScale.value = withDelay(200, withSpring(1, { damping: 10, stiffness: 100 }));
+    weeksCardRotation.value = withDelay(200, withTiming(-8, { duration: 600 }));
+
+    // Badge card: scale-in with rotation
+    badgeCardScale.value = withDelay(400, withSpring(1, { damping: 10, stiffness: 100 }));
+    badgeCardRotation.value = withDelay(400, withTiming(3, { duration: 600 }));
+
+    // Flame mascot: floating loop with rotation oscillation
+    flameTranslateY.value = withDelay(
+      300,
+      withRepeat(
+        withSequence(
+          withTiming(-8, { duration: 1500 }),
+          withTiming(0, { duration: 1500 })
+        ),
+        -1,
+        false
+      )
+    );
+    flameRotation.value = withDelay(
+      400,
+      withRepeat(
+        withSequence(
+          withTiming(-3, { duration: 2000 }),
+          withTiming(3, { duration: 2000 })
+        ),
+        -1,
+        true
+      )
+    );
+
+    // Footer: fade-in with delay
+    footerOpacity.value = withDelay(1000, withTiming(1, { duration: 400 }));
+  }, []);
+
+  const headlineStyle = useAnimatedStyle(() => ({
+    opacity: headlineOpacity.value,
+    transform: [{ translateY: headlineTranslateY.value }],
+  }));
+
+  const weeksCardStyle = useAnimatedStyle(() => ({
+    transform: [
+      { scale: weeksCardScale.value },
+      { rotate: `${weeksCardRotation.value}deg` },
+    ],
+  }));
+
+  const badgeCardStyle = useAnimatedStyle(() => ({
+    transform: [
+      { scale: badgeCardScale.value },
+      { rotate: `${badgeCardRotation.value}deg` },
+    ],
+  }));
+
+  const flameStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateY: flameTranslateY.value },
+      { rotate: `${flameRotation.value}deg` },
+    ],
+  }));
+
+  const footerStyle = useAnimatedStyle(() => ({
+    opacity: footerOpacity.value,
+  }));
+
   return (
     <Container>
       {/* Flame icon at top */}
-      <FlameContainer>
+      <FlameContainer style={flameStyle}>
         <FlameOuter>
           <FlameInner>
             <FlameCore />
@@ -217,13 +308,13 @@ export default function Slide8Streaks({
       </FlameContainer>
 
       {/* Headline */}
-      <HeadlineContainer>
+      <HeadlineContainer style={headlineStyle}>
         <HeadlineText>Votre record de flammes est de</HeadlineText>
       </HeadlineContainer>
 
       {/* Weeks card */}
       <WeeksContainer>
-        <WeeksCard>
+        <WeeksCard style={weeksCardStyle}>
           <WeeksNumber>{flammesWeeks}</WeeksNumber>
         </WeeksCard>
         <WeeksLabel>semaines{'\n'}consécutives.</WeeksLabel>
@@ -232,13 +323,13 @@ export default function Slide8Streaks({
       {/* Badge section */}
       <BadgeSection>
         <BadgeLabel>Vous avez atteint le badge</BadgeLabel>
-        <BadgeCard>
+        <BadgeCard style={badgeCardStyle}>
           <BadgeText>{flammeBadge}</BadgeText>
         </BadgeCard>
       </BadgeSection>
 
       {/* Bottom message */}
-      <BottomTextContainer>
+      <BottomTextContainer style={footerStyle}>
         <BottomText>
           {flammesWeeks >= 32 ? "Respect ! 👑" : "Bravo, c'est déjà top 👋"}
         </BottomText>

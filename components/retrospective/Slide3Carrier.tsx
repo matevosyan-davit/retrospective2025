@@ -1,6 +1,16 @@
+import { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+  withDelay,
+  withRepeat,
+  withSequence,
+} from 'react-native-reanimated';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#FF6B9D', '#FF8EB5'],
@@ -16,7 +26,7 @@ const StarburstContainer = styled.View`
   margin-bottom: 30px;
 `;
 
-const Starburst = styled.View`
+const Starburst = styled(Animated.View)`
   width: 120px;
   height: 120px;
   justify-content: center;
@@ -55,7 +65,7 @@ const Pupil = styled.View`
   background-color: #000000;
 `;
 
-const Headline = styled.Text`
+const Headline = styled(Animated.Text)`
   font-size: 30px;
   font-weight: 800;
   color: #FFFFFF;
@@ -64,13 +74,12 @@ const Headline = styled.Text`
   line-height: 38px;
 `;
 
-const CarrierCard = styled.View`
+const CarrierCard = styled(Animated.View)`
   background-color: #0A1B5C;
   border-radius: 16px;
   padding-vertical: 28px;
   padding-horizontal: 32px;
   align-self: center;
-  transform: rotate(-8deg);
   shadow-color: #000;
   shadow-offset: 0px 8px;
   shadow-opacity: 0.4;
@@ -96,7 +105,7 @@ const BottomTextContainer = styled.View`
   padding-horizontal: 24px;
 `;
 
-const BottomText = styled.Text`
+const BottomText = styled(Animated.Text)`
   font-size: 20px;
   font-weight: 700;
   color: #FFFFFF;
@@ -108,10 +117,69 @@ interface Slide3CarrierProps {
 }
 
 export default function Slide3Carrier({ favoriteCarrier = 'COLISSIMO' }: Slide3CarrierProps) {
+  const headlineOpacity = useSharedValue(0);
+  const headlineY = useSharedValue(10);
+  const carrierScale = useSharedValue(0.6);
+  const carrierRotate = useSharedValue(-5);
+  const mascotY = useSharedValue(0);
+  const mascotRotate = useSharedValue(0);
+  const bottomOpacity = useSharedValue(0);
+
+  useEffect(() => {
+    headlineOpacity.value = withTiming(1, { duration: 400 });
+    headlineY.value = withTiming(0, { duration: 400 });
+
+    carrierScale.value = withDelay(200, withSpring(1, { damping: 8, stiffness: 100 }));
+    carrierRotate.value = withDelay(200, withSpring(-8, { damping: 8, stiffness: 100 }));
+
+    mascotY.value = withDelay(400, withRepeat(
+      withSequence(
+        withTiming(-8, { duration: 1500 }),
+        withTiming(0, { duration: 1500 })
+      ),
+      -1,
+      false
+    ));
+
+    mascotRotate.value = withDelay(400, withRepeat(
+      withSequence(
+        withTiming(-3, { duration: 2000 }),
+        withTiming(3, { duration: 2000 })
+      ),
+      -1,
+      true
+    ));
+
+    bottomOpacity.value = withDelay(700, withTiming(1, { duration: 400 }));
+  }, []);
+
+  const headlineStyle = useAnimatedStyle(() => ({
+    opacity: headlineOpacity.value,
+    transform: [{ translateY: headlineY.value }],
+  }));
+
+  const carrierStyle = useAnimatedStyle(() => ({
+    transform: [
+      { scale: carrierScale.value },
+      { rotate: `${carrierRotate.value}deg` },
+    ],
+  }));
+
+  const mascotStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateY: mascotY.value },
+      { rotate: `${mascotRotate.value}deg` },
+    ],
+  }));
+
+  const bottomStyle = useAnimatedStyle(() => ({
+    opacity: bottomOpacity.value,
+  }));
+
   return (
     <Container>
       <StarburstContainer>
-        <Starburst>
+        <Starburst style={mascotStyle}>
           {Array.from({ length: 12 }).map((_, index) => (
             <View
               key={index}
@@ -142,16 +210,16 @@ export default function Slide3Carrier({ favoriteCarrier = 'COLISSIMO' }: Slide3C
         </Starburst>
       </StarburstContainer>
 
-      <Headline>
+      <Headline style={headlineStyle}>
         Le transporteur n°1{'\n'}dans votre cœur :
       </Headline>
 
-      <CarrierCard>
+      <CarrierCard style={carrierStyle}>
         <CarrierName>{favoriteCarrier}</CarrierName>
       </CarrierCard>
 
       <BottomTextContainer>
-        <BottomText>
+        <BottomText style={bottomStyle}>
           Les livreurs sont devenus vos BFF 💚
         </BottomText>
       </BottomTextContainer>
