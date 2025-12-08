@@ -31,7 +31,7 @@ const PinkCard = styled.View`
 `;
 
 const TitleText = styled.Text`
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 900;
   color: #0A1B5C;
   text-align: left;
