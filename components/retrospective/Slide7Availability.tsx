@@ -72,32 +72,32 @@ const HeadlineText = styled.Text`
 const DaysContainer = styled.View`
   flex-direction: row;
   align-items: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 `;
 
 const DaysCard = styled.View`
   background-color: #0A1B5C;
   border-radius: 16px;
-  padding: 32px;
+  padding: 28px;
   transform: rotate(-8deg);
   shadow-color: #000;
   shadow-offset: 0px 8px;
   shadow-opacity: 0.4;
   shadow-radius: 10px;
   elevation: 10;
-  min-width: 160px;
+  min-width: 150px;
 `;
 
 const DaysNumber = styled.Text`
-  font-size: 80px;
+  font-size: 72px;
   font-weight: 900;
   color: #FF6B9D;
-  line-height: 80px;
+  line-height: 72px;
   text-align: center;
 `;
 
 const DaysLabel = styled.Text`
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 800;
   color: #FFFFFF;
   margin-left: 20px;
@@ -105,20 +105,20 @@ const DaysLabel = styled.Text`
 `;
 
 const BestDaySection = styled.View`
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 `;
 
 const BestDayLabel = styled.Text`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 800;
   color: #FFFFFF;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 `;
 
 const BestDayCard = styled.View`
   background-color: #0A1B5C;
   border-radius: 16px;
-  padding: 24px 32px;
+  padding: 18px 28px;
   transform: rotate(3deg);
   shadow-color: #000;
   shadow-offset: 0px 6px;
@@ -129,7 +129,7 @@ const BestDayCard = styled.View`
 `;
 
 const BestDayText = styled.Text`
-  font-size: 40px;
+  font-size: 32px;
   font-weight: 900;
   color: #FF6B9D;
   letter-spacing: 2px;
