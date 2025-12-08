@@ -1,4 +1,4 @@
-import { Text, Image } from 'react-native';
+import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
@@ -17,9 +17,26 @@ const StarburstContainer = styled(Animatable.View)`
   margin-bottom: 30px;
 `;
 
-const StarImage = styled.Image`
+const StarContainer = styled.View`
   width: 180px;
   height: 180px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StarPoint = styled.View<{ rotation: number }>`
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: #FFB3D9;
+`;
+
+const StarCenter = styled.View`
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: #FF6B9D;
+  z-index: 10;
 `;
 
 const Headline = styled(Animatable.Text)`
@@ -83,7 +100,18 @@ export default function Slide3Carrier({ favoriteCarrier = 'COLISSIMO' }: Slide3C
         duration={2000}
         delay={800}
       >
-        <StarImage source={require('@/assets/images/étoile_rose.png')} resizeMode="contain" />
+        <StarContainer>
+          {[0, 72, 144, 216, 288].map((rotation) => (
+            <StarPoint
+              key={rotation}
+              rotation={rotation}
+              style={{
+                transform: [{ rotate: `${rotation}deg` }],
+              }}
+            />
+          ))}
+          <StarCenter />
+        </StarContainer>
       </StarburstContainer>
 
       <Headline
