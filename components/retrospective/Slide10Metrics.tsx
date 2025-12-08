@@ -7,13 +7,13 @@ const Container = styled(LinearGradient).attrs({
   locations: [0, 1],
 })`
   flex: 1;
-  padding-top: 80px;
+  padding-top: 60px;
   padding-horizontal: 24px;
 `;
 
 const MagnifyingGlassContainer = styled.View`
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 `;
 
 const MagnifyingGlassWrapper = styled.View`
@@ -89,8 +89,8 @@ const Sparkle3 = styled.View`
 `;
 
 const MetricsContainer = styled.View`
-  gap: 32px;
-  margin-bottom: 40px;
+  gap: 20px;
+  margin-bottom: 30px;
 `;
 
 const MetricRow = styled.View`
@@ -100,18 +100,18 @@ const MetricRow = styled.View`
 `;
 
 const MetricLabel = styled.Text`
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 800;
   color: #FFFFFF;
   flex: 1;
-  line-height: 28px;
+  line-height: 24px;
 `;
 
 const MetricCard = styled.View`
   background-color: #8BA3E8;
   border-radius: 12px;
-  padding: 16px 24px;
-  min-width: 100px;
+  padding: 12px 20px;
+  min-width: 90px;
   transform: rotate(3deg);
   shadow-color: #000;
   shadow-offset: 0px 4px;
@@ -122,25 +122,25 @@ const MetricCard = styled.View`
 `;
 
 const MetricValue = styled.Text`
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 900;
   color: #0A1B5C;
   text-align: center;
-  line-height: 48px;
+  line-height: 36px;
 `;
 
 const MetricUnit = styled.Text`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   color: #0A1B5C;
   text-align: right;
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: 6px;
+  right: 10px;
 `;
 
 const MetricSubtext = styled.Text`
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: #0A1B5C;
   text-align: center;
