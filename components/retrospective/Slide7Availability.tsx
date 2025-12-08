@@ -105,20 +105,20 @@ const DaysLabel = styled.Text`
 `;
 
 const BestDaySection = styled.View`
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 const BestDayLabel = styled.Text`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
   color: #FFFFFF;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 `;
 
 const BestDayCard = styled.View`
   background-color: #0A1B5C;
-  border-radius: 16px;
-  padding: 18px 28px;
+  border-radius: 12px;
+  padding: 14px 22px;
   transform: rotate(3deg);
   shadow-color: #000;
   shadow-offset: 0px 6px;
@@ -129,10 +129,10 @@ const BestDayCard = styled.View`
 `;
 
 const BestDayText = styled.Text`
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 900;
   color: #FF6B9D;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 `;
 
 
