@@ -67,7 +67,7 @@ const ParcelImage = styled(Animatable.Image)`
 
 const BottomTextContainer = styled(Animatable.View)`
   padding-horizontal: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 const BottomText = styled.Text`

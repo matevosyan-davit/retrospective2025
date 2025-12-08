@@ -151,7 +151,7 @@ const BestDayText = styled.Text`
 
 const BottomTextContainer = styled(Animatable.View)`
   position: absolute;
-  bottom: 12px;
+  bottom: 22px;
   left: 0;
   right: 0;
   padding-horizontal: 24px;
