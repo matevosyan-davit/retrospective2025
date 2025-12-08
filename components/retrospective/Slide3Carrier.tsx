@@ -83,7 +83,7 @@ export default function Slide3Carrier({ favoriteCarrier = 'COLISSIMO' }: Slide3C
         duration={2000}
         delay={800}
       >
-        <StarImage source={require('../../assets/images/étoile_rose.png')} resizeMode="contain" />
+        <StarImage source={require('@/assets/images/étoile_rose.png')} resizeMode="contain" />
       </StarburstContainer>
 
       <Headline
