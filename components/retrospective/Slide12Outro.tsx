@@ -1,13 +1,16 @@
-import { Text, View } from 'react-native';
+import { Text, View, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
+
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#FF8EB5', '#FF6B9D'],
   locations: [0, 1],
 })`
-  flex: 1;
+  width: 100%;
+  height: ${SCREEN_HEIGHT}px;
   justify-content: center;
   align-items: center;
   padding-horizontal: 24px;
