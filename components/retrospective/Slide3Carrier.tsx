@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Animatable from 'react-native-animatable';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#FF6B9D', '#FF8EB5'],
@@ -11,7 +12,7 @@ const Container = styled(LinearGradient).attrs({
   padding-horizontal: 24px;
 `;
 
-const StarburstContainer = styled.View`
+const StarburstContainer = styled(Animatable.View)`
   align-items: center;
   margin-bottom: 30px;
 `;
@@ -55,7 +56,7 @@ const Pupil = styled.View`
   background-color: #000000;
 `;
 
-const Headline = styled.Text`
+const Headline = styled(Animatable.Text)`
   font-size: 30px;
   font-weight: 800;
   color: #FFFFFF;
@@ -64,7 +65,7 @@ const Headline = styled.Text`
   line-height: 38px;
 `;
 
-const CarrierCard = styled.View`
+const CarrierCard = styled(Animatable.View)`
   background-color: #0A1B5C;
   border-radius: 16px;
   padding-vertical: 28px;
@@ -88,7 +89,7 @@ const CarrierName = styled.Text`
 `;
 
 
-const BottomTextContainer = styled.View`
+const BottomTextContainer = styled(Animatable.View)`
   position: absolute;
   bottom: 30px;
   left: 0;
@@ -110,7 +111,12 @@ interface Slide3CarrierProps {
 export default function Slide3Carrier({ favoriteCarrier = 'COLISSIMO' }: Slide3CarrierProps) {
   return (
     <Container>
-      <StarburstContainer>
+      <StarburstContainer
+        animation="pulse"
+        iterationCount="infinite"
+        duration={2000}
+        delay={800}
+      >
         <Starburst>
           {Array.from({ length: 12 }).map((_, index) => (
             <View
@@ -142,15 +148,27 @@ export default function Slide3Carrier({ favoriteCarrier = 'COLISSIMO' }: Slide3C
         </Starburst>
       </StarburstContainer>
 
-      <Headline>
+      <Headline
+        animation="fadeInUp"
+        duration={800}
+        delay={200}
+      >
         Le transporteur n°1{'\n'}dans votre cœur :
       </Headline>
 
-      <CarrierCard>
+      <CarrierCard
+        animation="zoomIn"
+        duration={1000}
+        delay={800}
+      >
         <CarrierName>{favoriteCarrier}</CarrierName>
       </CarrierCard>
 
-      <BottomTextContainer>
+      <BottomTextContainer
+        animation="fadeIn"
+        duration={800}
+        delay={1600}
+      >
         <BottomText>
           Les livreurs sont devenus vos BFF 💚
         </BottomText>
