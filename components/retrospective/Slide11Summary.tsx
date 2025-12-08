@@ -20,7 +20,7 @@ const HeaderContainer = styled.View`
 const RetrospectiveBanner = styled.View`
   background-color: #FF8EB5;
   border-radius: 14px;
-  padding: 20px 28px;
+  padding: 20px 28px 32px 28px;
   transform: rotate(-2deg);
   shadow-color: #000;
   shadow-offset: 0px 6px;
