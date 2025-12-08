@@ -11,9 +11,9 @@ const Container = styled.TouchableOpacity.attrs({
 `;
 
 const OuterCard = styled.View`
-  background-color: #0A1B5C;
+  background-color: #1B2571;
   border-radius: 24px;
-  padding: 20px;
+  padding: 24px;
   shadow-color: #000;
   shadow-offset: 0px 4px;
   shadow-opacity: 0.3;
@@ -22,44 +22,44 @@ const OuterCard = styled.View`
 `;
 
 const PinkCard = styled.View`
-  background-color: #FF6B9D;
-  border-radius: 16px;
-  padding: 24px;
+  background-color: #FF7391;
+  border-radius: 12px;
+  padding: 20px 24px;
   position: relative;
   overflow: visible;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 `;
 
 const TitleText = styled.Text`
-  font-size: 48px;
+  font-size: 52px;
   font-weight: 900;
-  color: #0A1B5C;
+  color: #1B2571;
   text-align: left;
-  letter-spacing: -1px;
-  line-height: 52px;
+  letter-spacing: -2px;
+  line-height: 56px;
 `;
 
 const StampContainer = styled.View`
   position: absolute;
-  bottom: -8px;
-  right: 16px;
-  background-color: #A5C4FF;
-  padding-horizontal: 20px;
-  padding-vertical: 8px;
+  bottom: -12px;
+  right: 40px;
+  background-color: #8AADFF;
+  padding-horizontal: 24px;
+  padding-vertical: 10px;
   border-radius: 8px;
-  transform: rotate(5deg);
+  transform: rotate(8deg);
   shadow-color: #000;
-  shadow-offset: 0px 2px;
-  shadow-opacity: 0.2;
-  shadow-radius: 4px;
-  elevation: 4;
+  shadow-offset: 0px 3px;
+  shadow-opacity: 0.25;
+  shadow-radius: 5px;
+  elevation: 5;
 `;
 
 const StampText = styled.Text`
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 900;
-  color: #0A1B5C;
-  letter-spacing: 1px;
+  color: #FFFFFF;
+  letter-spacing: 2px;
 `;
 
 const SubtitleText = styled.Text`
