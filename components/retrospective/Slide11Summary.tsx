@@ -64,7 +64,7 @@ const YearText = styled.Text`
 `;
 
 const SubtitleContainer = styled.View`
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   padding-horizontal: 8px;
 `;
 
@@ -79,15 +79,15 @@ const SubtitleText = styled.Text`
 const StatsGrid = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
 `;
 
 const StatCard = styled.View`
   background-color: #FFFFFF;
   border-radius: 14px;
-  padding: 16px;
-  width: 160px;
+  padding: 12px;
+  width: 140px;
   shadow-color: #000;
   shadow-offset: 0px 4px;
   shadow-opacity: 0.3;
@@ -99,12 +99,12 @@ const StatCard = styled.View`
 const StatValueCard = styled.View`
   background-color: #FF8EB5;
   border-radius: 12px;
-  padding: 12px;
+  padding: 10px;
   transform: rotate(-5deg);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   align-items: center;
   justify-content: center;
-  min-height: 60px;
+  min-height: 50px;
 `;
 
 const StatValueCardAlt = styled(StatValueCard)`
@@ -112,11 +112,11 @@ const StatValueCardAlt = styled(StatValueCard)`
 `;
 
 const StatValue = styled.Text`
-  font-size: 38px;
+  font-size: 32px;
   font-weight: 900;
   color: #0A1B5C;
   text-align: center;
-  line-height: 38px;
+  line-height: 32px;
 `;
 
 const StatValueWhite = styled(StatValue)`
