@@ -83,8 +83,8 @@ const HeartSmall = styled(Heart)`
 `;
 
 const ParcelImage = styled.Image`
-  width: 150px;
-  height: 150px;
+  width: 220px;
+  height: 220px;
 `;
 
 const BottomTextContainer = styled(Animatable.View)`
