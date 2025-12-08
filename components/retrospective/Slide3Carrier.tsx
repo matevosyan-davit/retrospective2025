@@ -1,4 +1,4 @@
-import { Text, Image } from 'react-native';
+import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
@@ -15,6 +15,45 @@ const Container = styled(LinearGradient).attrs({
 const StarburstContainer = styled(Animatable.View)`
   align-items: center;
   margin-bottom: 30px;
+`;
+
+const Starburst = styled.View`
+  width: 120px;
+  height: 120px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
+
+const StarburstCenter = styled.View`
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: #FF6B9D;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+`;
+
+const Eyes = styled.View`
+  flex-direction: row;
+  gap: 16px;
+`;
+
+const Eye = styled.View`
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Pupil = styled.View`
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  background-color: #000000;
 `;
 
 const Headline = styled(Animatable.Text)`
@@ -78,11 +117,35 @@ export default function Slide3Carrier({ favoriteCarrier = 'COLISSIMO' }: Slide3C
         duration={2000}
         delay={800}
       >
-        <Image
-          source={require('@/assets/images/étoile_rose.png')}
-          style={{ width: 140, height: 140 }}
-          resizeMode="contain"
-        />
+        <Starburst>
+          {Array.from({ length: 12 }).map((_, index) => (
+            <View
+              key={index}
+              style={{
+                position: 'absolute',
+                width: 30,
+                height: 70,
+                backgroundColor: '#0A1B5C',
+                borderRadius: 15,
+                transform: [
+                  { rotate: `${index * 30}deg` },
+                  { translateY: -40 },
+                ],
+              }}
+            />
+          ))}
+
+          <StarburstCenter>
+            <Eyes>
+              <Eye>
+                <Pupil />
+              </Eye>
+              <Eye>
+                <Pupil />
+              </Eye>
+            </Eyes>
+          </StarburstCenter>
+        </Starburst>
       </StarburstContainer>
 
       <Headline
