@@ -7,13 +7,13 @@ const Container = styled(LinearGradient).attrs({
   locations: [0, 1],
 })`
   flex: 1;
-  padding-top: 80px;
+  padding-top: 60px;
   padding-horizontal: 24px;
 `;
 
 const FlameContainer = styled.View`
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 `;
 
 const FlameOuter = styled.View`
@@ -45,7 +45,7 @@ const FlameCore = styled.View`
 `;
 
 const HeadlineContainer = styled.View`
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 `;
 
 const HeadlineText = styled.Text`
@@ -59,7 +59,7 @@ const HeadlineText = styled.Text`
 const WeeksContainer = styled.View`
   flex-direction: row;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 35px;
 `;
 
 const WeeksCard = styled.View`
@@ -92,20 +92,20 @@ const WeeksLabel = styled.Text`
 `;
 
 const BadgeSection = styled.View`
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 `;
 
 const BadgeLabel = styled.Text`
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 800;
   color: #FFFFFF;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 `;
 
 const BadgeCard = styled.View`
   background-color: #8BA3E8;
   border-radius: 12px;
-  padding: 24px 32px;
+  padding: 18px 24px;
   shadow-color: #000;
   shadow-offset: 0px 6px;
   shadow-opacity: 0.4;
@@ -115,7 +115,7 @@ const BadgeCard = styled.View`
 `;
 
 const BadgeText = styled.Text`
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 900;
   color: #0A1B5C;
   letter-spacing: 1px;
