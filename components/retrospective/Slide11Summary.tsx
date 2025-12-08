@@ -28,7 +28,7 @@ const RetrospectiveBanner = styled.View`
   shadow-radius: 8px;
   elevation: 8;
   position: relative;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 `;
 
 const RetrospectiveText = styled.Text`
