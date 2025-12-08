@@ -257,26 +257,32 @@ export default function Slide5Earnings({
         </HeadlineText>
       </HeadlineContainer>
 
-      {/* "Dont :" label */}
-      <DontLabel>Dont :</DontLabel>
+      {/* "Dont :" label - only show if there are bonuses or tips */}
+      {(bonus > 0 || tips > 0) && (
+        <DontLabel>Dont :</DontLabel>
+      )}
 
-      {/* Bonus breakdown */}
-      <BreakdownItem>
-        <BreakdownCard>
-          <BreakdownAmount>{bonus}</BreakdownAmount>
-          <BreakdownEuro>€</BreakdownEuro>
-        </BreakdownCard>
-        <BreakdownLabel>en bonus</BreakdownLabel>
-      </BreakdownItem>
+      {/* Bonus breakdown - only show if bonus > 0 */}
+      {bonus > 0 && (
+        <BreakdownItem>
+          <BreakdownCard>
+            <BreakdownAmount>{bonus}</BreakdownAmount>
+            <BreakdownEuro>€</BreakdownEuro>
+          </BreakdownCard>
+          <BreakdownLabel>en bonus</BreakdownLabel>
+        </BreakdownItem>
+      )}
 
-      {/* Tips breakdown */}
-      <BreakdownItem>
-        <BreakdownCard>
-          <BreakdownAmount>{tips}</BreakdownAmount>
-          <BreakdownEuro>€</BreakdownEuro>
-        </BreakdownCard>
-        <BreakdownLabel>en pourboires</BreakdownLabel>
-      </BreakdownItem>
+      {/* Tips breakdown - only show if tips > 0 */}
+      {tips > 0 && (
+        <BreakdownItem>
+          <BreakdownCard>
+            <BreakdownAmount>{tips}</BreakdownAmount>
+            <BreakdownEuro>€</BreakdownEuro>
+          </BreakdownCard>
+          <BreakdownLabel>en pourboires</BreakdownLabel>
+        </BreakdownItem>
+      )}
 
       {/* Bottom message */}
       <BottomTextContainer>
