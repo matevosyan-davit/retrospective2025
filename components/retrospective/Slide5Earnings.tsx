@@ -102,7 +102,7 @@ const EuroSymbol = styled.Text`
 
 const HeadlineContainer = styled.View`
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 `;
 
 const HeadlineText = styled.Text`
@@ -114,24 +114,24 @@ const HeadlineText = styled.Text`
 `;
 
 const DontLabel = styled.Text`
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   color: #FFFFFF;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   margin-left: 8px;
 `;
 
 const BreakdownItem = styled.View`
   flex-direction: row;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 `;
 
 const BreakdownCard = styled.View`
   background-color: #6B9DFF;
   border-radius: 12px;
-  padding-vertical: 16px;
-  padding-horizontal: 24px;
+  padding-vertical: 12px;
+  padding-horizontal: 20px;
   flex-direction: row;
   align-items: center;
   position: relative;
@@ -144,26 +144,26 @@ const BreakdownCard = styled.View`
 `;
 
 const BreakdownAmount = styled.Text`
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 900;
   color: #FFFFFF;
-  line-height: 48px;
+  line-height: 36px;
 `;
 
 const BreakdownEuro = styled.Text`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 900;
   color: #FFFFFF;
   position: absolute;
-  top: 8px;
-  right: 16px;
+  top: 6px;
+  right: 12px;
 `;
 
 const BreakdownLabel = styled.Text`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 800;
   color: #FFFFFF;
-  margin-left: 16px;
+  margin-left: 12px;
 `;
 
 
