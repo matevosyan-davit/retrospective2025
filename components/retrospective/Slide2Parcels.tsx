@@ -61,8 +61,8 @@ const DecorationArea = styled.View`
 `;
 
 const ParcelImage = styled(Animatable.Image)`
-  width: 120px;
-  height: 120px;
+  width: 220px;
+  height: 220px;
 `;
 
 const BottomTextContainer = styled(Animatable.View)`
