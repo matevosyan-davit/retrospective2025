@@ -1,9 +1,9 @@
-import { Text, View, Dimensions } from 'react-native';
+import { Text, View, Dimensions, Image } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 
-const { height: SCREEN_HEIGHT } = Dimensions.get('window');
+const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#FF6B9D', '#FF8EB5'],
@@ -14,6 +14,15 @@ const Container = styled(LinearGradient).attrs({
   padding-top: 80px;
   padding-horizontal: 24px;
   align-items: center;
+`;
+
+const BackgroundImage = styled.Image`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: ${SCREEN_WIDTH}px;
+  height: ${SCREEN_HEIGHT}px;
+  opacity: 0.3;
 `;
 
 const HeadlineContainer = styled(Animatable.View)`
@@ -179,6 +188,10 @@ export default function Slide9Ratings({
 
   return (
     <Container>
+      <BackgroundImage
+        source={require('@/assets/images/fond_rose_nuage..png')}
+        resizeMode="cover"
+      />
       <HeadlineContainer
         animation="fadeInUp"
         duration={800}

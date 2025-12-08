@@ -1,9 +1,9 @@
-import { Text, View, Dimensions } from 'react-native';
+import { Text, View, Dimensions, Image } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 
-const { height: SCREEN_HEIGHT } = Dimensions.get('window');
+const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#FF6B9D', '#FF8EB5'],
@@ -13,6 +13,15 @@ const Container = styled(LinearGradient).attrs({
   height: ${SCREEN_HEIGHT}px;
   padding-top: 80px;
   padding-horizontal: 24px;
+`;
+
+const BackgroundImage = styled.Image`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: ${SCREEN_WIDTH}px;
+  height: ${SCREEN_HEIGHT}px;
+  opacity: 0.3;
 `;
 
 const StarburstContainer = styled(Animatable.View)`
@@ -214,6 +223,10 @@ export default function Slide5Earnings({
 
   return (
     <Container>
+      <BackgroundImage
+        source={require('@/assets/images/fond_rose_nuage..png')}
+        resizeMode="cover"
+      />
       {/* Starburst character top right */}
       <StarburstContainer
         animation="pulse"

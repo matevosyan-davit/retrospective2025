@@ -1,9 +1,9 @@
-import { Text, View, Dimensions } from 'react-native';
+import { Text, View, Dimensions, Image } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 
-const { height: SCREEN_HEIGHT } = Dimensions.get('window');
+const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#FF8EB5', '#FF6B9D'],
@@ -14,6 +14,15 @@ const Container = styled(LinearGradient).attrs({
   justify-content: center;
   align-items: center;
   padding-horizontal: 24px;
+`;
+
+const BackgroundImage = styled.Image`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: ${SCREEN_WIDTH}px;
+  height: ${SCREEN_HEIGHT}px;
+  opacity: 0.3;
 `;
 
 const MerciCard = styled(Animatable.View)`
@@ -84,6 +93,10 @@ const HeartText = styled.Text`
 export default function Slide12Outro() {
   return (
     <Container>
+      <BackgroundImage
+        source={require('@/assets/images/fond_rose_nuage..png')}
+        resizeMode="cover"
+      />
       <MerciCard
         animation="zoomIn"
         duration={1000}
