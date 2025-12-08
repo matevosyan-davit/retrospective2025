@@ -115,7 +115,7 @@ const BadgeCard = styled.View`
 `;
 
 const BadgeText = styled.Text`
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 900;
   color: #0A1B5C;
   letter-spacing: 1px;
