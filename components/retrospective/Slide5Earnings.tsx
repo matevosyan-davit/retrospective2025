@@ -194,6 +194,20 @@ export default function Slide5Earnings({
   tips = 200,
   bonus = 200,
 }: Slide5EarningsProps) {
+  const getMessage = () => {
+    if (totalEarnings > 500) {
+      return 'Un beau week-end à deux ✈️ ou un projet perso 💡';
+    } else if (totalEarnings >= 200) {
+      return 'Une super session shopping 🛍️ ou une partie de ton assurance 🚗';
+    } else if (totalEarnings >= 100) {
+      return 'Un plein de courses 🛒 ou un cadeau 🎁';
+    } else if (totalEarnings >= 50) {
+      return 'Une sortie restau 🍜 ou la facture d\'électricité 🔌';
+    } else {
+      return 'Un plein d\'essence ⛽ ou une sortie fun 💛';
+    }
+  };
+
   return (
     <Container>
       {/* Starburst character top right */}
@@ -267,7 +281,7 @@ export default function Slide5Earnings({
       {/* Bottom message */}
       <BottomTextContainer>
         <BottomText>
-          De quoi s'offrir un beau week-end à{'\n'}deux 💕 ou financer un projet perso 💪
+          {getMessage()}
         </BottomText>
       </BottomTextContainer>
     </Container>
