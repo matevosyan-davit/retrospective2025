@@ -169,6 +169,7 @@ interface Slide10MetricsProps {
   deliverySpeedHours: number;
   serviceContacts: number;
   parcelsDelivered: number;
+  topPercentage?: number;
 }
 
 export default function Slide10Metrics({
@@ -176,6 +177,7 @@ export default function Slide10Metrics({
   deliverySpeedHours = 13,
   serviceContacts = 2,
   parcelsDelivered = 100,
+  topPercentage = 10,
 }: Slide10MetricsProps) {
   // Calculate contact rate percentage
   const contactRate = (serviceContacts / parcelsDelivered) * 100;
@@ -188,13 +190,18 @@ export default function Slide10Metrics({
   // Count how many metrics are BEST
   const bestCount = [isSuccessRateBest, isDeliverySpeedBest, isContactRateBest].filter(Boolean).length;
 
-  // Determine the message based on bestCount
-  let bottomMessage = "Votre potentiel est encore plus grand 💪";
+  // Determine the performance message based on bestCount
+  let performanceMessage = "Votre potentiel est encore plus grand 💪";
   if (bestCount === 3) {
-    bottomMessage = "Rapide, autonome et fiable :\nimpressionant ! 😎";
+    performanceMessage = "Rapide, autonome et fiable :\nimpressionant ! 😎";
   } else if (bestCount === 2) {
-    bottomMessage = "Vos livraisons se font sans souci la plupart du temps 👏";
+    performanceMessage = "Vos livraisons se font sans souci la plupart du temps 👏";
   }
+
+  // Determine the achievement message based on parcelsDelivered
+  const achievementMessage = parcelsDelivered > 500
+    ? `Je suis dans le top ${topPercentage}% des voisins-relais Pickme 🏆`
+    : "Je suis fier d'être un voisin-relais Pickme 💛";
   return (
     <Container>
       {/* Magnifying glass at top */}
@@ -252,9 +259,10 @@ export default function Slide10Metrics({
         </MetricRow>
       </MetricsContainer>
 
-      {/* Bottom message */}
+      {/* Bottom messages */}
       <BottomTextContainer>
-        <BottomText>{bottomMessage}</BottomText>
+        <BottomText>{performanceMessage}</BottomText>
+        <BottomText style={{ marginTop: 12 }}>{achievementMessage}</BottomText>
       </BottomTextContainer>
     </Container>
   );
