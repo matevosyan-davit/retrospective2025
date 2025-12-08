@@ -45,7 +45,7 @@ const StampContainer = styled.View`
   right: 40px;
   background-color: #8AADFF;
   padding-horizontal: 24px;
-  padding-vertical: 24px;
+  padding-vertical: 10px;
   border-radius: 8px;
   transform: rotate(8deg);
   shadow-color: #000;
@@ -53,6 +53,7 @@ const StampContainer = styled.View`
   shadow-opacity: 0.25;
   shadow-radius: 5px;
   elevation: 5;
+  padding: 10px;
 `;
 
 const StampText = styled.Text`
