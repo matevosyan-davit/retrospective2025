@@ -132,9 +132,14 @@ const BottomText = styled.Text`
 
 interface Slide2ParcelsProps {
   parcelsDelivered: number;
+  topPercentage?: number;
 }
 
-export default function Slide2Parcels({ parcelsDelivered = 560 }: Slide2ParcelsProps) {
+export default function Slide2Parcels({ parcelsDelivered = 560, topPercentage = 5 }: Slide2ParcelsProps) {
+  const message = parcelsDelivered >= 100
+    ? `Bravo, vous faites partie du top ${topPercentage}% des meilleurs Keepers 👏`
+    : 'Bravo continuez comme ça ! 💪';
+
   return (
     <Content>
       <Headline>Vous avez livré</Headline>
@@ -169,7 +174,7 @@ export default function Slide2Parcels({ parcelsDelivered = 560 }: Slide2ParcelsP
 
       <BottomTextContainer>
         <BottomText>
-          Bravo vous faites partie du top{'\n'}200 des meilleurs Keepers 👋
+          {message}
         </BottomText>
       </BottomTextContainer>
     </Content>

@@ -110,7 +110,7 @@ export default function RetrospectiveScreen() {
       case 0:
         return <Slide1Intro />;
       case 1:
-        return <Slide2Parcels parcelsDelivered={560} />;
+        return <Slide2Parcels parcelsDelivered={560} topPercentage={5} />;
       case 2:
         return <Slide3Carrier favoriteCarrier="COLISSIMO" />;
       case 3:
