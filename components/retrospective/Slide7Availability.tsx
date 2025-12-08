@@ -1,16 +1,6 @@
 import { Text, View } from 'react-native';
-import { useEffect } from 'react';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-  withDelay,
-  withRepeat,
-  withSequence,
-} from 'react-native-reanimated';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#FF6B9D', '#FF8EB5'],
@@ -21,7 +11,7 @@ const Container = styled(LinearGradient).attrs({
   padding-horizontal: 24px;
 `;
 
-const CalendarContainer = styled(Animated.View)`
+const CalendarContainer = styled.View`
   align-items: center;
   margin-bottom: 40px;
 `;
@@ -67,7 +57,7 @@ const CalendarDay = styled.View`
   border-radius: 4px;
 `;
 
-const HeadlineContainer = styled(Animated.View)`
+const HeadlineContainer = styled.View`
   margin-bottom: 30px;
 `;
 
@@ -85,10 +75,11 @@ const DaysContainer = styled.View`
   margin-bottom: 40px;
 `;
 
-const DaysCard = styled(Animated.View)`
+const DaysCard = styled.View`
   background-color: #0A1B5C;
   border-radius: 16px;
   padding: 28px;
+  transform: rotate(-8deg);
   shadow-color: #000;
   shadow-offset: 0px 8px;
   shadow-opacity: 0.4;
@@ -124,10 +115,11 @@ const BestDayLabel = styled.Text`
   margin-bottom: 10px;
 `;
 
-const BestDayCard = styled(Animated.View)`
+const BestDayCard = styled.View`
   background-color: #0A1B5C;
   border-radius: 12px;
   padding: 14px 22px;
+  transform: rotate(3deg);
   shadow-color: #000;
   shadow-offset: 0px 6px;
   shadow-opacity: 0.4;
@@ -144,7 +136,7 @@ const BestDayText = styled.Text`
 `;
 
 
-const BottomTextContainer = styled(Animated.View)`
+const BottomTextContainer = styled.View`
   position: absolute;
   bottom: 30px;
   left: 0;
@@ -169,92 +161,10 @@ export default function Slide7Availability({
   availabilityDays = 320,
   bestDay = 'MERCREDI',
 }: Slide7AvailabilityProps) {
-  // Animation values
-  const headlineOpacity = useSharedValue(0);
-  const headlineTranslateY = useSharedValue(10);
-  const daysCardScale = useSharedValue(0.6);
-  const daysCardRotation = useSharedValue(-5);
-  const bestDayCardScale = useSharedValue(0.6);
-  const bestDayCardRotation = useSharedValue(-5);
-  const calendarTranslateY = useSharedValue(0);
-  const calendarRotation = useSharedValue(0);
-  const footerOpacity = useSharedValue(0);
-
-  useEffect(() => {
-    // Headline: fade-in + upward motion
-    headlineOpacity.value = withTiming(1, { duration: 400 });
-    headlineTranslateY.value = withTiming(0, { duration: 400 });
-
-    // Days card: scale-in with rotation and spring bounce
-    daysCardScale.value = withDelay(200, withSpring(1, { damping: 10, stiffness: 100 }));
-    daysCardRotation.value = withDelay(200, withTiming(-8, { duration: 600 }));
-
-    // Best day card: scale-in with rotation
-    bestDayCardScale.value = withDelay(400, withSpring(1, { damping: 10, stiffness: 100 }));
-    bestDayCardRotation.value = withDelay(400, withTiming(3, { duration: 600 }));
-
-    // Calendar mascot: floating loop with rotation oscillation
-    calendarTranslateY.value = withDelay(
-      300,
-      withRepeat(
-        withSequence(
-          withTiming(-8, { duration: 1500 }),
-          withTiming(0, { duration: 1500 })
-        ),
-        -1,
-        false
-      )
-    );
-    calendarRotation.value = withDelay(
-      400,
-      withRepeat(
-        withSequence(
-          withTiming(-3, { duration: 2000 }),
-          withTiming(3, { duration: 2000 })
-        ),
-        -1,
-        true
-      )
-    );
-
-    // Footer: fade-in with delay
-    footerOpacity.value = withDelay(800, withTiming(1, { duration: 400 }));
-  }, []);
-
-  const headlineStyle = useAnimatedStyle(() => ({
-    opacity: headlineOpacity.value,
-    transform: [{ translateY: headlineTranslateY.value }],
-  }));
-
-  const daysCardStyle = useAnimatedStyle(() => ({
-    transform: [
-      { scale: daysCardScale.value },
-      { rotate: `${daysCardRotation.value}deg` },
-    ],
-  }));
-
-  const bestDayCardStyle = useAnimatedStyle(() => ({
-    transform: [
-      { scale: bestDayCardScale.value },
-      { rotate: `${bestDayCardRotation.value}deg` },
-    ],
-  }));
-
-  const calendarStyle = useAnimatedStyle(() => ({
-    transform: [
-      { translateY: calendarTranslateY.value },
-      { rotate: `${calendarRotation.value}deg` },
-    ],
-  }));
-
-  const footerStyle = useAnimatedStyle(() => ({
-    opacity: footerOpacity.value,
-  }));
-
   return (
     <Container>
       {/* Calendar icon at top */}
-      <CalendarContainer style={calendarStyle}>
+      <CalendarContainer>
         <View>
           <CalendarHooks>
             <Hook />
@@ -271,13 +181,13 @@ export default function Slide7Availability({
       </CalendarContainer>
 
       {/* Headline */}
-      <HeadlineContainer style={headlineStyle}>
+      <HeadlineContainer>
         <HeadlineText>Vous avez été dispo</HeadlineText>
       </HeadlineContainer>
 
       {/* Days available card */}
       <DaysContainer>
-        <DaysCard style={daysCardStyle}>
+        <DaysCard>
           <DaysNumber>{availabilityDays}</DaysNumber>
         </DaysCard>
         <DaysLabel>jours</DaysLabel>
@@ -286,13 +196,13 @@ export default function Slide7Availability({
       {/* Best day section */}
       <BestDaySection>
         <BestDayLabel>Votre meilleur{'\n'}jour de livraison :</BestDayLabel>
-        <BestDayCard style={bestDayCardStyle}>
+        <BestDayCard>
           <BestDayText>{bestDay}</BestDayText>
         </BestDayCard>
       </BestDaySection>
 
       {/* Bottom message */}
-      <BottomTextContainer style={footerStyle}>
+      <BottomTextContainer>
         <BottomText>
           {availabilityDays >= 200
             ? "Quand vous vous y mettez, vous ne faites pas semblant 😄"

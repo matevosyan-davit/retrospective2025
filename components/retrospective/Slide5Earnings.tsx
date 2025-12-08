@@ -1,16 +1,6 @@
-import { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-  withDelay,
-  withRepeat,
-  withSequence,
-} from 'react-native-reanimated';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#FF6B9D', '#FF8EB5'],
@@ -28,7 +18,7 @@ const StarburstContainer = styled.View`
   align-items: center;
 `;
 
-const Starburst = styled(Animated.View)`
+const Starburst = styled.View`
   width: 100px;
   height: 100px;
   justify-content: center;
@@ -78,10 +68,11 @@ const Mouth = styled.View`
   border-top-width: 0;
 `;
 
-const MainEarningsCard = styled(Animated.View)`
+const MainEarningsCard = styled.View`
   background-color: #0A1B5C;
   border-radius: 16px;
   padding: 32px;
+  transform: rotate(-8deg);
   shadow-color: #000;
   shadow-offset: 0px 8px;
   shadow-opacity: 0.3;
@@ -114,7 +105,7 @@ const HeadlineContainer = styled.View`
   margin-bottom: 24px;
 `;
 
-const HeadlineText = styled(Animated.Text)`
+const HeadlineText = styled.Text`
   font-size: 28px;
   font-weight: 800;
   color: #FFFFFF;
@@ -122,7 +113,7 @@ const HeadlineText = styled(Animated.Text)`
   line-height: 34px;
 `;
 
-const DontLabel = styled(Animated.Text)`
+const DontLabel = styled.Text`
   font-size: 22px;
   font-weight: 800;
   color: #FFFFFF;
@@ -130,7 +121,7 @@ const DontLabel = styled(Animated.Text)`
   margin-left: 8px;
 `;
 
-const BreakdownItem = styled(Animated.View)`
+const BreakdownItem = styled.View`
   flex-direction: row;
   align-items: center;
   margin-bottom: 12px;
@@ -184,7 +175,7 @@ const BottomTextContainer = styled.View`
   padding-horizontal: 24px;
 `;
 
-const BottomText = styled(Animated.Text)`
+const BottomText = styled.Text`
   font-size: 18px;
   font-weight: 700;
   color: #FFFFFF;
@@ -217,96 +208,11 @@ export default function Slide5Earnings({
     }
   };
 
-  const earningsScale = useSharedValue(0.6);
-  const earningsRotate = useSharedValue(-5);
-  const headlineOpacity = useSharedValue(0);
-  const headlineY = useSharedValue(10);
-  const dontOpacity = useSharedValue(0);
-  const breakdown1Opacity = useSharedValue(0);
-  const breakdown1X = useSharedValue(-20);
-  const breakdown2Opacity = useSharedValue(0);
-  const breakdown2X = useSharedValue(-20);
-  const mascotY = useSharedValue(0);
-  const mascotRotate = useSharedValue(0);
-  const bottomOpacity = useSharedValue(0);
-
-  useEffect(() => {
-    earningsScale.value = withDelay(200, withSpring(1, { damping: 8, stiffness: 100 }));
-    earningsRotate.value = withDelay(200, withSpring(-8, { damping: 8, stiffness: 100 }));
-
-    headlineOpacity.value = withDelay(400, withTiming(1, { duration: 400 }));
-    headlineY.value = withDelay(400, withTiming(0, { duration: 400 }));
-
-    dontOpacity.value = withDelay(600, withTiming(1, { duration: 400 }));
-
-    breakdown1Opacity.value = withDelay(700, withTiming(1, { duration: 400 }));
-    breakdown1X.value = withDelay(700, withTiming(0, { duration: 400 }));
-
-    breakdown2Opacity.value = withDelay(850, withTiming(1, { duration: 400 }));
-    breakdown2X.value = withDelay(850, withTiming(0, { duration: 400 }));
-
-    mascotY.value = withDelay(300, withRepeat(
-      withSequence(
-        withTiming(-8, { duration: 1500 }),
-        withTiming(0, { duration: 1500 })
-      ),
-      -1,
-      false
-    ));
-
-    mascotRotate.value = withDelay(300, withRepeat(
-      withSequence(
-        withTiming(-3, { duration: 2000 }),
-        withTiming(3, { duration: 2000 })
-      ),
-      -1,
-      true
-    ));
-
-    bottomOpacity.value = withDelay(1000, withTiming(1, { duration: 400 }));
-  }, []);
-
-  const earningsStyle = useAnimatedStyle(() => ({
-    transform: [
-      { scale: earningsScale.value },
-      { rotate: `${earningsRotate.value}deg` },
-    ],
-  }));
-
-  const headlineStyle = useAnimatedStyle(() => ({
-    opacity: headlineOpacity.value,
-    transform: [{ translateY: headlineY.value }],
-  }));
-
-  const dontStyle = useAnimatedStyle(() => ({
-    opacity: dontOpacity.value,
-  }));
-
-  const breakdown1Style = useAnimatedStyle(() => ({
-    opacity: breakdown1Opacity.value,
-    transform: [{ translateX: breakdown1X.value }],
-  }));
-
-  const breakdown2Style = useAnimatedStyle(() => ({
-    opacity: breakdown2Opacity.value,
-    transform: [{ translateX: breakdown2X.value }],
-  }));
-
-  const mascotStyle = useAnimatedStyle(() => ({
-    transform: [
-      { translateY: mascotY.value },
-      { rotate: `${mascotRotate.value}deg` },
-    ],
-  }));
-
-  const bottomStyle = useAnimatedStyle(() => ({
-    opacity: bottomOpacity.value,
-  }));
-
   return (
     <Container>
+      {/* Starburst character top right */}
       <StarburstContainer>
-        <Starburst style={mascotStyle}>
+        <Starburst>
           {Array.from({ length: 16 }).map((_, index) => (
             <View
               key={index}
@@ -338,23 +244,27 @@ export default function Slide5Earnings({
         </Starburst>
       </StarburstContainer>
 
-      <MainEarningsCard style={earningsStyle}>
+      {/* Main earnings card */}
+      <MainEarningsCard>
         <EarningsAmount>{totalEarnings}</EarningsAmount>
         <EuroSymbol>€</EuroSymbol>
       </MainEarningsCard>
 
+      {/* Headline */}
       <HeadlineContainer>
-        <HeadlineText style={headlineStyle}>
+        <HeadlineText>
           dans la poche{'\n'}juste en sauvant{'\n'}des colis.
         </HeadlineText>
       </HeadlineContainer>
 
+      {/* "Dont :" label - only show if there are bonuses or tips */}
       {(bonus > 0 || tips > 0) && (
-        <DontLabel style={dontStyle}>Dont :</DontLabel>
+        <DontLabel>Dont :</DontLabel>
       )}
 
+      {/* Bonus breakdown - only show if bonus > 0 */}
       {bonus > 0 && (
-        <BreakdownItem style={breakdown1Style}>
+        <BreakdownItem>
           <BreakdownCard>
             <BreakdownAmount>{bonus}</BreakdownAmount>
             <BreakdownEuro>€</BreakdownEuro>
@@ -363,8 +273,9 @@ export default function Slide5Earnings({
         </BreakdownItem>
       )}
 
+      {/* Tips breakdown - only show if tips > 0 */}
       {tips > 0 && (
-        <BreakdownItem style={breakdown2Style}>
+        <BreakdownItem>
           <BreakdownCard>
             <BreakdownAmount>{tips}</BreakdownAmount>
             <BreakdownEuro>€</BreakdownEuro>
@@ -373,8 +284,9 @@ export default function Slide5Earnings({
         </BreakdownItem>
       )}
 
+      {/* Bottom message */}
       <BottomTextContainer>
-        <BottomText style={bottomStyle}>
+        <BottomText>
           {getMessage()}
         </BottomText>
       </BottomTextContainer>

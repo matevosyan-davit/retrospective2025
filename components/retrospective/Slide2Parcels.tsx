@@ -1,15 +1,5 @@
-import { useEffect } from 'react';
 import { Text } from 'react-native';
 import styled from 'styled-components/native';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-  withDelay,
-  withRepeat,
-  withSequence,
-} from 'react-native-reanimated';
 
 const Content = styled.View`
   flex: 1;
@@ -19,7 +9,7 @@ const Content = styled.View`
   padding-top: 60px;
 `;
 
-const Headline = styled(Animated.Text)`
+const Headline = styled.Text`
   font-size: 36px;
   font-weight: 800;
   color: #FFFFFF;
@@ -27,11 +17,12 @@ const Headline = styled(Animated.Text)`
   margin-bottom: 20px;
 `;
 
-const NumberCard = styled(Animated.View)`
+const NumberCard = styled.View`
   background-color: #FF6B9D;
   border-radius: 16px;
   padding-vertical: 24px;
   padding-horizontal: 40px;
+  transform: rotate(-5deg);
   shadow-color: #000;
   shadow-offset: 0px 6px;
   shadow-opacity: 0.4;
@@ -64,7 +55,7 @@ const DecorationArea = styled.View`
 `;
 
 
-const ParcelContainer = styled(Animated.View)`
+const ParcelContainer = styled.View`
   position: absolute;
   left: 50%;
   top: 50%;
@@ -131,7 +122,7 @@ const BottomTextContainer = styled.View`
   padding-horizontal: 16px;
 `;
 
-const BottomText = styled(Animated.Text)`
+const BottomText = styled.Text`
   font-size: 18px;
   font-weight: 700;
   color: #FFFFFF;
@@ -149,77 +140,18 @@ export default function Slide2Parcels({ parcelsDelivered = 560, topPercentage = 
     ? `Bravo, vous faites partie du top ${topPercentage}% des meilleurs Keepers 👏`
     : 'Bravo continuez comme ça ! 💪';
 
-  const headlineOpacity = useSharedValue(0);
-  const headlineY = useSharedValue(10);
-  const numberScale = useSharedValue(0.6);
-  const numberRotate = useSharedValue(-5);
-  const mascotY = useSharedValue(0);
-  const mascotRotate = useSharedValue(0);
-  const bottomOpacity = useSharedValue(0);
-
-  useEffect(() => {
-    headlineOpacity.value = withTiming(1, { duration: 400 });
-    headlineY.value = withTiming(0, { duration: 400 });
-
-    numberScale.value = withDelay(200, withSpring(1, { damping: 8, stiffness: 100 }));
-    numberRotate.value = withDelay(200, withSpring(3, { damping: 8, stiffness: 100 }));
-
-    mascotY.value = withDelay(400, withRepeat(
-      withSequence(
-        withTiming(-8, { duration: 1500 }),
-        withTiming(0, { duration: 1500 })
-      ),
-      -1,
-      false
-    ));
-
-    mascotRotate.value = withDelay(400, withRepeat(
-      withSequence(
-        withTiming(-3, { duration: 2000 }),
-        withTiming(3, { duration: 2000 })
-      ),
-      -1,
-      true
-    ));
-
-    bottomOpacity.value = withDelay(700, withTiming(1, { duration: 400 }));
-  }, []);
-
-  const headlineStyle = useAnimatedStyle(() => ({
-    opacity: headlineOpacity.value,
-    transform: [{ translateY: headlineY.value }],
-  }));
-
-  const numberStyle = useAnimatedStyle(() => ({
-    transform: [
-      { scale: numberScale.value },
-      { rotate: `${numberRotate.value}deg` },
-    ],
-  }));
-
-  const mascotStyle = useAnimatedStyle(() => ({
-    transform: [
-      { translateY: mascotY.value },
-      { rotate: `${mascotRotate.value}deg` },
-    ],
-  }));
-
-  const bottomStyle = useAnimatedStyle(() => ({
-    opacity: bottomOpacity.value,
-  }));
-
   return (
     <Content>
-      <Headline style={headlineStyle}>Vous avez livré</Headline>
+      <Headline>Vous avez livré</Headline>
 
-      <NumberCard style={numberStyle}>
+      <NumberCard>
         <NumberText>{parcelsDelivered}</NumberText>
       </NumberCard>
 
       <ColisText>colis</ColisText>
 
       <DecorationArea>
-        <ParcelContainer style={mascotStyle}>
+        <ParcelContainer>
           <Parcel>
             <HeartsContainer>
               <Heart>❤️</Heart>
@@ -241,7 +173,7 @@ export default function Slide2Parcels({ parcelsDelivered = 560, topPercentage = 
       </DecorationArea>
 
       <BottomTextContainer>
-        <BottomText style={bottomStyle}>
+        <BottomText>
           {message}
         </BottomText>
       </BottomTextContainer>

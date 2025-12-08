@@ -1,16 +1,6 @@
 import { Text, View } from 'react-native';
-import { useEffect } from 'react';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-  withDelay,
-  withRepeat,
-  withSequence,
-} from 'react-native-reanimated';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#1B2A7C', '#0A1B5C'],
@@ -21,7 +11,7 @@ const Container = styled(LinearGradient).attrs({
   padding-horizontal: 24px;
 `;
 
-const EarthCharacterContainer = styled(Animated.View)`
+const EarthCharacterContainer = styled.View`
   align-items: flex-start;
   margin-left: 20px;
   margin-bottom: 40px;
@@ -120,7 +110,7 @@ const RightFoot = styled.View`
   border-radius: 8px;
 `;
 
-const HeadlineContainer = styled(Animated.View)`
+const HeadlineContainer = styled.View`
   margin-bottom: 30px;
 `;
 
@@ -138,10 +128,11 @@ const CO2Container = styled.View`
   margin-bottom: 40px;
 `;
 
-const CO2Card = styled(Animated.View)`
+const CO2Card = styled.View`
   background-color: #FF6B9D;
   border-radius: 16px;
   padding: 32px;
+  transform: rotate(-8deg);
   shadow-color: #000;
   shadow-offset: 0px 8px;
   shadow-opacity: 0.4;
@@ -172,7 +163,7 @@ const CO2Text = styled.Text`
 `;
 
 
-const BottomTextContainer = styled(Animated.View)`
+const BottomTextContainer = styled.View`
   position: absolute;
   bottom: 30px;
   left: 0;
@@ -192,82 +183,10 @@ interface Slide6EcoProps {
 }
 
 export default function Slide6Eco({ co2Saved = 100 }: Slide6EcoProps) {
-  // Animation values
-  const headlineOpacity = useSharedValue(0);
-  const headlineTranslateY = useSharedValue(10);
-  const cardScale = useSharedValue(0.6);
-  const cardRotation = useSharedValue(-5);
-  const mascotTranslateY = useSharedValue(0);
-  const mascotRotation = useSharedValue(0);
-  const footerOpacity = useSharedValue(0);
-
-  useEffect(() => {
-    // Headline: fade-in + upward motion
-    headlineOpacity.value = withTiming(1, { duration: 400 });
-    headlineTranslateY.value = withTiming(0, { duration: 400 });
-
-    // CO2 card: scale-in with rotation and spring bounce
-    cardScale.value = withDelay(200, withSpring(1, { damping: 10, stiffness: 100 }));
-    cardRotation.value = withDelay(
-      200,
-      withTiming(3, { duration: 600 })
-    );
-
-    // Mascot: floating loop with rotation oscillation
-    mascotTranslateY.value = withDelay(
-      300,
-      withRepeat(
-        withSequence(
-          withTiming(-8, { duration: 1500 }),
-          withTiming(0, { duration: 1500 })
-        ),
-        -1,
-        false
-      )
-    );
-    mascotRotation.value = withDelay(
-      400,
-      withRepeat(
-        withSequence(
-          withTiming(-3, { duration: 2000 }),
-          withTiming(3, { duration: 2000 })
-        ),
-        -1,
-        true
-      )
-    );
-
-    // Footer: fade-in with delay
-    footerOpacity.value = withDelay(700, withTiming(1, { duration: 400 }));
-  }, []);
-
-  const headlineStyle = useAnimatedStyle(() => ({
-    opacity: headlineOpacity.value,
-    transform: [{ translateY: headlineTranslateY.value }],
-  }));
-
-  const cardStyle = useAnimatedStyle(() => ({
-    transform: [
-      { scale: cardScale.value },
-      { rotate: `${cardRotation.value}deg` },
-    ],
-  }));
-
-  const mascotStyle = useAnimatedStyle(() => ({
-    transform: [
-      { translateY: mascotTranslateY.value },
-      { rotate: `${mascotRotation.value}deg` },
-    ],
-  }));
-
-  const footerStyle = useAnimatedStyle(() => ({
-    opacity: footerOpacity.value,
-  }));
-
   return (
     <Container>
       {/* Earth character with legs */}
-      <EarthCharacterContainer style={mascotStyle}>
+      <EarthCharacterContainer>
         <View style={{ height: 140 }}>
           <EarthCharacter>
             <EarthStripe1 />
@@ -291,13 +210,13 @@ export default function Slide6Eco({ co2Saved = 100 }: Slide6EcoProps) {
       </EarthCharacterContainer>
 
       {/* Headline */}
-      <HeadlineContainer style={headlineStyle}>
+      <HeadlineContainer>
         <HeadlineText>Votre quartier{'\n'}respire mieux :</HeadlineText>
       </HeadlineContainer>
 
       {/* CO2 card and text */}
       <CO2Container>
-        <CO2Card style={cardStyle}>
+        <CO2Card>
           <CO2Number>{co2Saved}</CO2Number>
         </CO2Card>
 
@@ -307,7 +226,7 @@ export default function Slide6Eco({ co2Saved = 100 }: Slide6EcoProps) {
       </CO2Container>
 
       {/* Bottom message */}
-      <BottomTextContainer style={footerStyle}>
+      <BottomTextContainer>
         <BottomText>C'est votre côté écolo ça 💪</BottomText>
       </BottomTextContainer>
     </Container>
