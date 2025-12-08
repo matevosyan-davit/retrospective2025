@@ -7,105 +7,105 @@ const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 const Container = styled(ImageBackground)`
   width: 100%;
   height: ${SCREEN_HEIGHT}px;
-  padding-top: 60px;
+  padding-top: 40px;
   padding-horizontal: 24px;
 `;
 
 const FlameContainer = styled(Animatable.View)`
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 const FlameOuter = styled.View`
-  width: 90px;
-  height: 110px;
+  width: 60px;
+  height: 75px;
   background-color: #8BA3E8;
-  border-radius: 45px 45px 0 0;
+  border-radius: 30px 30px 0 0;
   justify-content: center;
   align-items: center;
   position: relative;
 `;
 
 const FlameInner = styled.View`
-  width: 70px;
-  height: 90px;
+  width: 46px;
+  height: 60px;
   background-color: #FF6B9D;
-  border-radius: 35px 35px 0 0;
+  border-radius: 23px 23px 0 0;
   position: absolute;
   bottom: 0;
 `;
 
 const FlameCore = styled.View`
-  width: 50px;
-  height: 70px;
+  width: 32px;
+  height: 46px;
   background-color: #FF8EB5;
-  border-radius: 25px 25px 0 0;
+  border-radius: 16px 16px 0 0;
   position: absolute;
-  bottom: 5px;
+  bottom: 3px;
 `;
 
 const HeadlineContainer = styled(Animatable.View)`
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 `;
 
 const HeadlineText = styled.Text`
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 800;
   color: #FFFFFF;
   text-align: left;
-  line-height: 34px;
+  line-height: 30px;
 `;
 
 const WeeksContainer = styled(Animatable.View)`
   flex-direction: row;
   align-items: center;
-  margin-bottom: 35px;
+  margin-bottom: 25px;
 `;
 
 const WeeksCard = styled.View`
   background-color: #FF6B9D;
   border-radius: 16px;
-  padding: 32px;
+  padding: 24px 28px;
   transform: rotate(-8deg);
   shadow-color: #000;
   shadow-offset: 0px 8px;
   shadow-opacity: 0.4;
   shadow-radius: 10px;
   elevation: 10;
-  min-width: 140px;
+  min-width: 110px;
 `;
 
 const WeeksNumber = styled.Text`
-  font-size: 80px;
+  font-size: 64px;
   font-weight: 900;
   color: #0A1B5C;
-  line-height: 80px;
+  line-height: 64px;
   text-align: center;
 `;
 
 const WeeksLabel = styled.Text`
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   color: #FFFFFF;
-  margin-left: 20px;
+  margin-left: 18px;
   flex: 1;
 `;
 
 const BadgeSection = styled(Animatable.View)`
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 const BadgeLabel = styled.Text`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
   color: #FFFFFF;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 `;
 
 const BadgeCard = styled.View`
   background-color: #8BA3E8;
   border-radius: 12px;
-  padding: 18px 24px;
+  padding: 16px 20px;
   shadow-color: #000;
   shadow-offset: 0px 6px;
   shadow-opacity: 0.4;
@@ -115,10 +115,10 @@ const BadgeCard = styled.View`
 `;
 
 const BadgeText = styled.Text`
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 900;
   color: #0A1B5C;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
 `;
 
@@ -183,14 +183,14 @@ const StarComponent = () => (
 
 const BottomTextContainer = styled(Animatable.View)`
   position: absolute;
-  bottom: 30px;
+  bottom: 12px;
   left: 0;
   right: 0;
   padding-horizontal: 24px;
 `;
 
 const BottomText = styled.Text`
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: #FFFFFF;
   text-align: center;
