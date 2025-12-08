@@ -150,7 +150,7 @@ const MetricSubtext = styled.Text`
 
 const BottomTextContainer = styled.View`
   position: absolute;
-  bottom: 30px;
+  bottom: 50px;
   left: 0;
   right: 0;
   padding-horizontal: 24px;
