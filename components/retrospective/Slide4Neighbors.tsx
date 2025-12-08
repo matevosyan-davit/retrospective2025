@@ -81,6 +81,10 @@ interface Slide4NeighborsProps {
 }
 
 export default function Slide4Neighbors({ neighborsHelped = 500 }: Slide4NeighborsProps) {
+  const message = neighborsHelped >= 50
+    ? 'Votre sourire est désormais plus connu que celui du facteur…'
+    : 'Assez pour organiser un super apéro entre voisins 😌…';
+
   return (
     <Content>
       <HeadlineContainer>
@@ -98,7 +102,7 @@ export default function Slide4Neighbors({ neighborsHelped = 500 }: Slide4Neighbo
 
       <BottomTextContainer>
         <BottomText>
-          Votre sourire est désormais plus{'\n'}connu que celui du facteur 😁
+          {message}
         </BottomText>
       </BottomTextContainer>
     </Content>
