@@ -183,7 +183,7 @@ export default function Slide6Eco({ co2Saved = 100 }: Slide6EcoProps) {
   return (
     <Container
       source={require('../../assets/images/fond_bleu_nuage.png')}
-      resizeMode="cover"
+      resizeMode="stretch"
     >
       {/* Earth character with legs */}
       <EarthCharacterContainer

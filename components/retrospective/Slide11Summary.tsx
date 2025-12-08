@@ -170,7 +170,7 @@ export default function Slide11Summary({
   return (
     <Container
       source={require('../../assets/images/fond_bleu_nuage.png')}
-      resizeMode="cover"
+      resizeMode="stretch"
     >
       {/* Header with Retrospective banner */}
       <HeaderContainer

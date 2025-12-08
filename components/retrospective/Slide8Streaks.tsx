@@ -205,7 +205,7 @@ export default function Slide8Streaks({
   return (
     <Container
       source={require('../../assets/images/fond_bleu_nuage.png')}
-      resizeMode="cover"
+      resizeMode="stretch"
     >
       {/* Flame icon at top */}
       <FlameContainer

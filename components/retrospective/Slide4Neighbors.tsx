@@ -93,7 +93,7 @@ export default function Slide4Neighbors({ neighborsHelped = 500 }: Slide4Neighbo
   return (
     <BackgroundImage
       source={require('../../assets/images/fond_bleu_nuage.png')}
-      resizeMode="cover"
+      resizeMode="stretch"
     >
       <Content>
         <HeadlineContainer

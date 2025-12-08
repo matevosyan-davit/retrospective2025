@@ -68,7 +68,7 @@ export default function Slide1Intro() {
   return (
     <BackgroundImage
       source={require('../../assets/images/fond_bleu_nuage.png')}
-      resizeMode="cover"
+      resizeMode="stretch"
     >
       <Content>
         <TitleCard

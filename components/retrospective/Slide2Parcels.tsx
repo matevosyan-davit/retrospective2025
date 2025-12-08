@@ -148,7 +148,7 @@ export default function Slide2Parcels({ parcelsDelivered = 560, topPercentage = 
   return (
     <BackgroundImage
       source={require('../../assets/images/fond_bleu_nuage.png')}
-      resizeMode="cover"
+      resizeMode="stretch"
     >
       <Content>
         <Headline

@@ -202,7 +202,7 @@ export default function Slide10Metrics({
   return (
     <Container
       source={require('../../assets/images/fond_bleu_nuage.png')}
-      resizeMode="cover"
+      resizeMode="stretch"
     >
       {/* Magnifying glass at top */}
       <MagnifyingGlassContainer
