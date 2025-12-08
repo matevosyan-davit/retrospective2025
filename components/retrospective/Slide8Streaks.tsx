@@ -252,7 +252,9 @@ export default function Slide8Streaks({
 
       {/* Bottom message */}
       <BottomTextContainer>
-        <BottomText>Respect ! 👑</BottomText>
+        <BottomText>
+          {flammesWeeks >= 32 ? "Respect ! 👑" : "Bravo, c'est déjà top 👋"}
+        </BottomText>
       </BottomTextContainer>
     </Container>
   );
