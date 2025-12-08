@@ -32,7 +32,7 @@ const RetrospectiveBanner = styled.View`
 `;
 
 const RetrospectiveText = styled.Text`
-  font-size: 40px;
+  font-size: 34px;
   font-weight: 900;
   color: #0A1B5C;
   text-transform: uppercase;
@@ -175,7 +175,7 @@ export default function Slide11Summary({
       {/* Header with Retrospective banner */}
       <HeaderContainer>
         <RetrospectiveBanner>
-          <RetrospectiveText>RÉTRO-{'\n'}SPECTIVE</RetrospectiveText>
+          <RetrospectiveText>RÉTROSPECTIVE</RetrospectiveText>
           <YearBadge>
             <YearText>{year}</YearText>
           </YearBadge>
