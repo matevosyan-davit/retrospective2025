@@ -44,7 +44,7 @@ const StampContainer = styled.View`
   bottom: -12px;
   right: 20px;
   background-color: #8AADFF;
-  padding-horizontal: 10px;
+  padding-horizontal: 5px;
   padding-vertical: 10px;
   border-radius: 8px;
   transform: rotate(8deg);
