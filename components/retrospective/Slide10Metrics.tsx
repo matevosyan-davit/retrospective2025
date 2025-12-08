@@ -168,13 +168,33 @@ interface Slide10MetricsProps {
   successRate: number;
   deliverySpeedHours: number;
   serviceContacts: number;
+  parcelsDelivered: number;
 }
 
 export default function Slide10Metrics({
   successRate = 95,
   deliverySpeedHours = 13,
   serviceContacts = 2,
+  parcelsDelivered = 100,
 }: Slide10MetricsProps) {
+  // Calculate contact rate percentage
+  const contactRate = (serviceContacts / parcelsDelivered) * 100;
+
+  // Determine which metrics meet BEST criteria
+  const isSuccessRateBest = successRate >= 80;
+  const isDeliverySpeedBest = deliverySpeedHours < 24;
+  const isContactRateBest = contactRate < 3;
+
+  // Count how many metrics are BEST
+  const bestCount = [isSuccessRateBest, isDeliverySpeedBest, isContactRateBest].filter(Boolean).length;
+
+  // Determine the message based on bestCount
+  let bottomMessage = "Votre potentiel est encore plus grand 💪";
+  if (bestCount === 3) {
+    bottomMessage = "Rapide, autonome et fiable :\nimpressionant ! 😎";
+  } else if (bestCount === 2) {
+    bottomMessage = "Vos livraisons se font sans souci la plupart du temps 👏";
+  }
   return (
     <Container>
       {/* Magnifying glass at top */}
@@ -234,9 +254,7 @@ export default function Slide10Metrics({
 
       {/* Bottom message */}
       <BottomTextContainer>
-        <BottomText>
-          Rapide, autonome et fiable :{'\n'}impressionnant ! 😎
-        </BottomText>
+        <BottomText>{bottomMessage}</BottomText>
       </BottomTextContainer>
     </Container>
   );
