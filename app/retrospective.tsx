@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { View, Pressable } from 'react-native';
 import styled from 'styled-components/native';
 import { useRouter } from 'expo-router';
 import { X } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
 import Slide1Intro from '@/components/retrospective/Slide1Intro';
 import Slide2Parcels from '@/components/retrospective/Slide2Parcels';
 import Slide3Carrier from '@/components/retrospective/Slide3Carrier';
@@ -37,16 +38,17 @@ const ProgressContainer = styled.View`
   z-index: 5;
 `;
 
-interface ProgressBarProps {
-  isActive: boolean;
-}
-
-const ProgressBar = styled.View<ProgressBarProps>`
+const ProgressBarContainer = styled.View`
   flex: 1;
   height: 3px;
-  background-color: ${(props: ProgressBarProps) =>
-    props.isActive ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.3)'
-  };
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+`;
+
+const ProgressBarFill = styled(Animated.View)`
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 2px;
 `;
 
@@ -81,9 +83,13 @@ const TapZoneRight = styled(Pressable)`
   flex: 2;
 `;
 
+const SLIDE_DURATION = 5000;
+
 export default function RetrospectiveScreen() {
   const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const progressValues = useRef(Array.from({ length: 12 }, () => useSharedValue(0))).current;
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const totalSlides = 12;
 
@@ -91,19 +97,59 @@ export default function RetrospectiveScreen() {
     router.back();
   };
 
+  const resetProgress = (slideIndex: number) => {
+    progressValues[slideIndex].value = 0;
+  };
+
+  const startSlideProgress = (slideIndex: number) => {
+    if (slideIndex === totalSlides - 1) {
+      return;
+    }
+
+    resetProgress(slideIndex);
+    progressValues[slideIndex].value = withTiming(1, {
+      duration: SLIDE_DURATION,
+      easing: Easing.linear,
+    });
+  };
+
   const goToPrevious = () => {
     if (currentSlide > 0) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+      resetProgress(currentSlide);
       setCurrentSlide(currentSlide - 1);
     }
   };
 
   const goToNext = () => {
     if (currentSlide < totalSlides - 1) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+      resetProgress(currentSlide);
       setCurrentSlide(currentSlide + 1);
     } else {
       handleClose();
     }
   };
+
+  useEffect(() => {
+    if (currentSlide < totalSlides - 1) {
+      startSlideProgress(currentSlide);
+
+      timerRef.current = setTimeout(() => {
+        setCurrentSlide((prev) => Math.min(prev + 1, totalSlides - 1));
+      }, SLIDE_DURATION);
+    }
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, [currentSlide]);
 
   const renderSlide = () => {
     switch (currentSlide) {
@@ -136,12 +182,30 @@ export default function RetrospectiveScreen() {
     }
   };
 
+  const ProgressBar = ({ index }: { index: number }) => {
+    const animatedStyle = useAnimatedStyle(() => {
+      if (index < currentSlide) {
+        return { width: '100%' };
+      } else if (index === currentSlide) {
+        return { width: `${progressValues[index].value * 100}%` };
+      } else {
+        return { width: '0%' };
+      }
+    });
+
+    return (
+      <ProgressBarContainer>
+        <ProgressBarFill style={animatedStyle} />
+      </ProgressBarContainer>
+    );
+  };
+
   return (
     <Container>
       <Gradient>
         <ProgressContainer>
           {Array.from({ length: totalSlides }).map((_, index) => (
-            <ProgressBar key={index} isActive={index <= currentSlide} />
+            <ProgressBar key={index} index={index} />
           ))}
         </ProgressContainer>
 
