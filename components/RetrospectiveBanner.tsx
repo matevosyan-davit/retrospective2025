@@ -31,13 +31,12 @@ const PinkCard = styled.View`
 `;
 
 const TitleText = styled.Text`
-  font-size: 34px;
+  font-size: 48px;
   font-weight: 900;
   color: #0A1B5C;
   text-align: left;
   letter-spacing: -1px;
   line-height: 52px;
-  padding-right: 100px;
 `;
 
 const StampContainer = styled.View`
