@@ -41,6 +41,7 @@ const TitleText = styled.Text`
 
 const StampContainer = styled.View`
   position: absolute;
+  top: 12px;
   bottom: -12px;
   right: 40px;
   background-color: #8AADFF;
