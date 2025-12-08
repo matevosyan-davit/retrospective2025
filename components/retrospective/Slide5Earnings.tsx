@@ -11,7 +11,7 @@ const Container = styled(LinearGradient).attrs({
 })`
   width: 100%;
   height: ${SCREEN_HEIGHT}px;
-  padding-top: 80px;
+  padding-top: 40px;
   padding-horizontal: 24px;
 `;
 
@@ -26,23 +26,23 @@ const BackgroundImage = styled.Image`
 
 const StarburstContainer = styled(Animatable.View)`
   position: absolute;
-  top: 80px;
+  top: 40px;
   right: 20px;
   align-items: center;
 `;
 
 const Starburst = styled.View`
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   justify-content: center;
   align-items: center;
   position: relative;
 `;
 
 const StarburstCenter = styled.View`
-  width: 70px;
-  height: 70px;
-  border-radius: 35px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
   background-color: #FFAA88;
   justify-content: center;
   align-items: center;
@@ -51,32 +51,32 @@ const StarburstCenter = styled.View`
 
 const Eyes = styled.View`
   flex-direction: row;
-  gap: 12px;
-  margin-bottom: 4px;
+  gap: 8px;
+  margin-bottom: 3px;
 `;
 
 const Eye = styled.View`
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
   background-color: #FFFFFF;
   justify-content: center;
   align-items: center;
 `;
 
 const Pupil = styled.View`
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 3.5px;
   background-color: #000000;
 `;
 
 const Mouth = styled.View`
-  width: 14px;
-  height: 7px;
-  border-bottom-left-radius: 14px;
-  border-bottom-right-radius: 14px;
-  border-width: 2px;
+  width: 10px;
+  height: 5px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-width: 1.5px;
   border-color: #000000;
   border-top-width: 0;
 `;
@@ -84,7 +84,7 @@ const Mouth = styled.View`
 const MainEarningsCard = styled(Animatable.View)`
   background-color: #0A1B5C;
   border-radius: 16px;
-  padding: 32px;
+  padding: 24px 28px;
   transform: rotate(-8deg);
   shadow-color: #000;
   shadow-offset: 0px 8px;
@@ -93,58 +93,58 @@ const MainEarningsCard = styled(Animatable.View)`
   elevation: 10;
   align-self: flex-start;
   margin-left: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   position: relative;
 `;
 
 const EarningsAmount = styled.Text`
-  font-size: 80px;
+  font-size: 64px;
   font-weight: 900;
   color: #FF6B9D;
-  line-height: 80px;
+  line-height: 64px;
 `;
 
 const EuroSymbol = styled.Text`
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 900;
   color: #FFFFFF;
   position: absolute;
-  top: 10px;
-  right: 16px;
+  top: 8px;
+  right: 14px;
 `;
 
 const HeadlineContainer = styled(Animatable.View)`
-  margin-top: 20px;
-  margin-bottom: 24px;
+  margin-top: 16px;
+  margin-bottom: 20px;
 `;
 
 const HeadlineText = styled.Text`
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 800;
   color: #FFFFFF;
   text-align: left;
-  line-height: 34px;
+  line-height: 30px;
 `;
 
 const DontLabel = styled.Text`
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 800;
   color: #FFFFFF;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   margin-left: 8px;
 `;
 
 const BreakdownItem = styled(Animatable.View)`
   flex-direction: row;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 `;
 
 const BreakdownCard = styled.View`
   background-color: #6B9DFF;
   border-radius: 12px;
-  padding-vertical: 12px;
-  padding-horizontal: 20px;
+  padding-vertical: 10px;
+  padding-horizontal: 18px;
   flex-direction: row;
   align-items: center;
   position: relative;
@@ -157,43 +157,43 @@ const BreakdownCard = styled.View`
 `;
 
 const BreakdownAmount = styled.Text`
-  font-size: 36px;
+  font-size: 28px;
   font-weight: 900;
   color: #FFFFFF;
-  line-height: 36px;
+  line-height: 28px;
 `;
 
 const BreakdownEuro = styled.Text`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 900;
   color: #FFFFFF;
   position: absolute;
-  top: 6px;
-  right: 12px;
+  top: 5px;
+  right: 10px;
 `;
 
 const BreakdownLabel = styled.Text`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
   color: #FFFFFF;
-  margin-left: 12px;
+  margin-left: 10px;
 `;
 
 
 const BottomTextContainer = styled(Animatable.View)`
   position: absolute;
-  bottom: 30px;
+  bottom: 12px;
   left: 0;
   right: 0;
   padding-horizontal: 24px;
 `;
 
 const BottomText = styled.Text`
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: #FFFFFF;
   text-align: center;
-  line-height: 24px;
+  line-height: 22px;
 `;
 
 interface Slide5EarningsProps {
@@ -240,13 +240,13 @@ export default function Slide5Earnings({
               key={index}
               style={{
                 position: 'absolute',
-                width: 6,
-                height: 45,
+                width: 4,
+                height: 32,
                 backgroundColor: '#FFFFFF',
-                borderRadius: 3,
+                borderRadius: 2,
                 transform: [
                   { rotate: `${index * 22.5}deg` },
-                  { translateY: -32 },
+                  { translateY: -22 },
                 ],
               }}
             />

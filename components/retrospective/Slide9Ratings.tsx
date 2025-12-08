@@ -11,7 +11,7 @@ const Container = styled(LinearGradient).attrs({
 })`
   width: 100%;
   height: ${SCREEN_HEIGHT}px;
-  padding-top: 80px;
+  padding-top: 40px;
   padding-horizontal: 24px;
   align-items: center;
 `;
@@ -26,63 +26,63 @@ const BackgroundImage = styled.Image`
 `;
 
 const HeadlineContainer = styled(Animatable.View)`
-  margin-bottom: 40px;
+  margin-bottom: 25px;
 `;
 
 const HeadlineText = styled.Text`
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 800;
   color: #FFFFFF;
   text-align: center;
-  line-height: 38px;
+  line-height: 30px;
 `;
 
 const RatingCountCard = styled(Animatable.View)`
   background-color: #0A1B5C;
   border-radius: 16px;
-  padding: 32px;
+  padding: 24px 28px;
   transform: rotate(-5deg);
   shadow-color: #000;
   shadow-offset: 0px 8px;
   shadow-opacity: 0.4;
   shadow-radius: 10px;
   elevation: 10;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 `;
 
 const RatingCountNumber = styled.Text`
-  font-size: 80px;
+  font-size: 64px;
   font-weight: 900;
   color: #FF6B9D;
   text-align: center;
-  line-height: 80px;
+  line-height: 64px;
 `;
 
 const RatingCountLabel = styled.Text`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 800;
   color: #FFFFFF;
   text-align: center;
-  margin-top: 8px;
+  margin-top: 6px;
 `;
 
 const AverageRatingSection = styled(Animatable.View)`
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 `;
 
 const AverageRatingLabel = styled.Text`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 800;
   color: #FFFFFF;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 `;
 
 const StarsContainer = styled.View`
   flex-direction: row;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 8px;
+  margin-bottom: 14px;
 `;
 
 const StarWrapper = styled.View`
@@ -90,15 +90,15 @@ const StarWrapper = styled.View`
 `;
 
 const Star = styled.View<{ filled: boolean; partial?: number }>`
-  width: 50px;
-  height: 50px;
+  width: 38px;
+  height: 38px;
   position: relative;
 `;
 
 const RatingNumberCard = styled.View`
   background-color: #0A1B5C;
   border-radius: 12px;
-  padding: 16px 32px;
+  padding: 12px 24px;
   shadow-color: #000;
   shadow-offset: 0px 4px;
   shadow-opacity: 0.3;
@@ -107,7 +107,7 @@ const RatingNumberCard = styled.View`
 `;
 
 const RatingNumberText = styled.Text`
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 900;
   color: #FFFFFF;
   text-align: center;
@@ -115,14 +115,14 @@ const RatingNumberText = styled.Text`
 
 const BottomTextContainer = styled(Animatable.View)`
   position: absolute;
-  bottom: 30px;
+  bottom: 12px;
   left: 0;
   right: 0;
   padding-horizontal: 24px;
 `;
 
 const BottomText = styled.Text`
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: #FFFFFF;
   text-align: center;
@@ -137,9 +137,9 @@ const StarShape = ({ filled, partial }: { filled: boolean; partial?: number }) =
   const starColor = filled ? '#FFD700' : 'rgba(255, 255, 255, 0.3)';
 
   return (
-    <View style={{ position: 'relative', width: 50, height: 50 }}>
+    <View style={{ position: 'relative', width: 38, height: 38 }}>
       <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}>
-        <Text style={{ fontSize: 50, color: starColor, textAlign: 'center', lineHeight: 50 }}>
+        <Text style={{ fontSize: 38, color: starColor, textAlign: 'center', lineHeight: 38 }}>
           ★
         </Text>
       </View>
@@ -150,11 +150,11 @@ const StarShape = ({ filled, partial }: { filled: boolean; partial?: number }) =
             top: 0,
             left: 0,
             width: `${partial * 100}%`,
-            height: 50,
+            height: 38,
             overflow: 'hidden'
           }}
         >
-          <Text style={{ fontSize: 50, color: '#FFD700', textAlign: 'center', lineHeight: 50 }}>
+          <Text style={{ fontSize: 38, color: '#FFD700', textAlign: 'center', lineHeight: 38 }}>
             ★
           </Text>
         </View>

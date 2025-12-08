@@ -14,33 +14,33 @@ const Content = styled.View`
   justify-content: center;
   align-items: center;
   padding-horizontal: 24px;
-  padding-top: 60px;
+  padding-top: 40px;
 `;
 
 const Headline = styled(Animatable.Text)`
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 800;
   color: #FFFFFF;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 `;
 
 const NumberCard = styled(Animatable.View)`
   background-color: #FF6B9D;
   border-radius: 16px;
-  padding-vertical: 24px;
-  padding-horizontal: 40px;
+  padding-vertical: 20px;
+  padding-horizontal: 32px;
   transform: rotate(-5deg);
   shadow-color: #000;
   shadow-offset: 0px 6px;
   shadow-opacity: 0.4;
   shadow-radius: 8px;
   elevation: 8;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 `;
 
 const NumberText = styled.Text`
-  font-size: 88px;
+  font-size: 64px;
   font-weight: 900;
   color: #0A1B5C;
   text-align: center;
@@ -48,26 +48,26 @@ const NumberText = styled.Text`
 `;
 
 const ColisText = styled(Animatable.Text)`
-  font-size: 40px;
+  font-size: 28px;
   font-weight: 800;
   color: #FFFFFF;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 const DecorationArea = styled.View`
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 `;
 
 const ParcelImage = styled(Animatable.Image)`
-  width: 220px;
-  height: 220px;
+  width: 140px;
+  height: 140px;
 `;
 
 const BottomTextContainer = styled(Animatable.View)`
   padding-horizontal: 16px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 `;
 
 const BottomText = styled.Text`
@@ -75,7 +75,7 @@ const BottomText = styled.Text`
   font-weight: 700;
   color: #FFFFFF;
   text-align: center;
-  line-height: 26px;
+  line-height: 24px;
 `;
 
 interface Slide2ParcelsProps {
