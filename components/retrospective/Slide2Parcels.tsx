@@ -1,5 +1,6 @@
 import { Text } from 'react-native';
 import styled from 'styled-components/native';
+import * as Animatable from 'react-native-animatable';
 
 const Content = styled.View`
   flex: 1;
@@ -9,7 +10,7 @@ const Content = styled.View`
   padding-top: 60px;
 `;
 
-const Headline = styled.Text`
+const Headline = styled(Animatable.Text)`
   font-size: 36px;
   font-weight: 800;
   color: #FFFFFF;
@@ -17,7 +18,7 @@ const Headline = styled.Text`
   margin-bottom: 20px;
 `;
 
-const NumberCard = styled.View`
+const NumberCard = styled(Animatable.View)`
   background-color: #FF6B9D;
   border-radius: 16px;
   padding-vertical: 24px;
@@ -39,7 +40,7 @@ const NumberText = styled.Text`
   letter-spacing: -2px;
 `;
 
-const ColisText = styled.Text`
+const ColisText = styled(Animatable.Text)`
   font-size: 40px;
   font-weight: 800;
   color: #FFFFFF;
@@ -62,11 +63,11 @@ const ParcelContainer = styled.View`
   transform: translateX(-50px) translateY(-50px);
 `;
 
-const Parcel = styled.View`
+const Parcel = styled(Animatable.View)`
   align-items: center;
 `;
 
-const HeartsContainer = styled.View`
+const HeartsContainer = styled(Animatable.View)`
   flex-direction: row;
   margin-bottom: 8px;
   gap: 4px;
@@ -118,7 +119,7 @@ const Pupil = styled.View`
   background-color: #000000;
 `;
 
-const BottomTextContainer = styled.View`
+const BottomTextContainer = styled(Animatable.View)`
   padding-horizontal: 16px;
 `;
 
@@ -142,18 +143,43 @@ export default function Slide2Parcels({ parcelsDelivered = 560, topPercentage = 
 
   return (
     <Content>
-      <Headline>Vous avez livré</Headline>
+      <Headline
+        animation="fadeInUp"
+        duration={800}
+        delay={200}
+      >
+        Vous avez livré
+      </Headline>
 
-      <NumberCard>
+      <NumberCard
+        animation="bounceIn"
+        duration={1000}
+        delay={600}
+      >
         <NumberText>{parcelsDelivered}</NumberText>
       </NumberCard>
 
-      <ColisText>colis</ColisText>
+      <ColisText
+        animation="slideInUp"
+        duration={600}
+        delay={1000}
+      >
+        colis
+      </ColisText>
 
       <DecorationArea>
         <ParcelContainer>
-          <Parcel>
-            <HeartsContainer>
+          <Parcel
+            animation="pulse"
+            iterationCount="infinite"
+            duration={2000}
+            delay={1400}
+          >
+            <HeartsContainer
+              animation="fadeInUp"
+              duration={600}
+              delay={1600}
+            >
               <Heart>❤️</Heart>
               <HeartSmall>❤️</HeartSmall>
             </HeartsContainer>
@@ -172,7 +198,11 @@ export default function Slide2Parcels({ parcelsDelivered = 560, topPercentage = 
         </ParcelContainer>
       </DecorationArea>
 
-      <BottomTextContainer>
+      <BottomTextContainer
+        animation="fadeIn"
+        duration={800}
+        delay={2000}
+      >
         <BottomText>
           {message}
         </BottomText>
