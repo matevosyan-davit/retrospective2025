@@ -1,9 +1,12 @@
-import { Text, ImageBackground } from 'react-native';
+import { Text, ImageBackground, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import * as Animatable from 'react-native-animatable';
 
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
+
 const BackgroundImage = styled(ImageBackground)`
-  flex: 1;
+  width: 100%;
+  height: ${SCREEN_HEIGHT}px;
 `;
 
 const Content = styled.View`
