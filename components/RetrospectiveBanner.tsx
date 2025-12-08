@@ -37,6 +37,7 @@ const TitleText = styled.Text`
   text-align: left;
   letter-spacing: -1px;
   line-height: 52px;
+  padding-right: 100px;
 `;
 
 const StampContainer = styled.View`
