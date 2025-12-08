@@ -83,10 +83,6 @@ const TapZoneRight = styled(Pressable)`
   flex: 2;
 `;
 
-const SlideContainer = styled(Animated.View)`
-  flex: 1;
-`;
-
 const SLIDE_DURATION = 5000;
 
 export default function RetrospectiveScreen() {
@@ -96,10 +92,6 @@ export default function RetrospectiveScreen() {
   const progressValues = useRef(Array.from({ length: 12 }, () => useSharedValue(0))).current;
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const pauseTimeRef = useRef<number>(0);
-  const prevSlideRef = useRef(0);
-
-  const slideTranslateX = useSharedValue(0);
-  const slideOpacity = useSharedValue(1);
 
   const totalSlides = 12;
 
@@ -185,24 +177,6 @@ export default function RetrospectiveScreen() {
   };
 
   useEffect(() => {
-    const isMovingForward = currentSlide > prevSlideRef.current;
-
-    if (currentSlide !== 0) {
-      slideTranslateX.value = isMovingForward ? 100 : -100;
-      slideOpacity.value = 0;
-
-      slideTranslateX.value = withTiming(0, {
-        duration: 400,
-        easing: Easing.out(Easing.ease),
-      });
-      slideOpacity.value = withTiming(1, {
-        duration: 400,
-        easing: Easing.out(Easing.ease),
-      });
-    }
-
-    prevSlideRef.current = currentSlide;
-
     if (currentSlide < totalSlides - 1) {
       pauseTimeRef.current = 0;
       startSlideProgress(currentSlide, 0);
@@ -264,13 +238,6 @@ export default function RetrospectiveScreen() {
     );
   };
 
-  const slideAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateX: slideTranslateX.value }],
-      opacity: slideOpacity.value,
-    };
-  });
-
   return (
     <Container>
       <Gradient>
@@ -297,9 +264,7 @@ export default function RetrospectiveScreen() {
           />
         </TapZonesContainer>
 
-        <SlideContainer style={slideAnimatedStyle}>
-          {renderSlide()}
-        </SlideContainer>
+        {renderSlide()}
       </Gradient>
     </Container>
   );
