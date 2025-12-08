@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import { useRouter } from 'expo-router';
 import { X } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing, cancelAnimation, runOnJS } from 'react-native-reanimated';
 import Slide1Intro from '@/components/retrospective/Slide1Intro';
 import Slide2Parcels from '@/components/retrospective/Slide2Parcels';
 import Slide3Carrier from '@/components/retrospective/Slide3Carrier';
@@ -88,8 +88,10 @@ const SLIDE_DURATION = 5000;
 export default function RetrospectiveScreen() {
   const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const progressValues = useRef(Array.from({ length: 12 }, () => useSharedValue(0))).current;
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const pauseTimeRef = useRef<number>(0);
 
   const totalSlides = 12;
 
@@ -101,16 +103,49 @@ export default function RetrospectiveScreen() {
     progressValues[slideIndex].value = 0;
   };
 
-  const startSlideProgress = (slideIndex: number) => {
+  const startSlideProgress = (slideIndex: number, startFrom: number = 0) => {
     if (slideIndex === totalSlides - 1) {
       return;
     }
 
-    resetProgress(slideIndex);
+    const remainingDuration = SLIDE_DURATION * (1 - startFrom);
+    progressValues[slideIndex].value = startFrom;
     progressValues[slideIndex].value = withTiming(1, {
-      duration: SLIDE_DURATION,
+      duration: remainingDuration,
       easing: Easing.linear,
     });
+
+    timerRef.current = setTimeout(() => {
+      setCurrentSlide((prev) => Math.min(prev + 1, totalSlides - 1));
+    }, remainingDuration);
+  };
+
+  const pauseProgress = () => {
+    if (currentSlide < totalSlides - 1) {
+      cancelAnimation(progressValues[currentSlide]);
+      pauseTimeRef.current = progressValues[currentSlide].value;
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    }
+  };
+
+  const resumeProgress = () => {
+    if (currentSlide < totalSlides - 1) {
+      startSlideProgress(currentSlide, pauseTimeRef.current);
+    }
+  };
+
+  const handlePressIn = () => {
+    setIsPaused(true);
+    pauseProgress();
+  };
+
+  const handlePressOut = () => {
+    setIsPaused(false);
+    resumeProgress();
   };
 
   const goToPrevious = () => {
@@ -118,7 +153,10 @@ export default function RetrospectiveScreen() {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
       }
+      cancelAnimation(progressValues[currentSlide]);
       resetProgress(currentSlide);
+      setIsPaused(false);
+      pauseTimeRef.current = 0;
       setCurrentSlide(currentSlide - 1);
     }
   };
@@ -128,7 +166,10 @@ export default function RetrospectiveScreen() {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
       }
+      cancelAnimation(progressValues[currentSlide]);
       resetProgress(currentSlide);
+      setIsPaused(false);
+      pauseTimeRef.current = 0;
       setCurrentSlide(currentSlide + 1);
     } else {
       handleClose();
@@ -137,11 +178,8 @@ export default function RetrospectiveScreen() {
 
   useEffect(() => {
     if (currentSlide < totalSlides - 1) {
-      startSlideProgress(currentSlide);
-
-      timerRef.current = setTimeout(() => {
-        setCurrentSlide((prev) => Math.min(prev + 1, totalSlides - 1));
-      }, SLIDE_DURATION);
+      pauseTimeRef.current = 0;
+      startSlideProgress(currentSlide, 0);
     }
 
     return () => {
@@ -214,8 +252,16 @@ export default function RetrospectiveScreen() {
         </CloseButton>
 
         <TapZonesContainer>
-          <TapZoneLeft onPress={goToPrevious} />
-          <TapZoneRight onPress={goToNext} />
+          <TapZoneLeft
+            onPress={goToPrevious}
+            onPressIn={handlePressIn}
+            onPressOut={handlePressOut}
+          />
+          <TapZoneRight
+            onPress={goToNext}
+            onPressIn={handlePressIn}
+            onPressOut={handlePressOut}
+          />
         </TapZonesContainer>
 
         {renderSlide()}
