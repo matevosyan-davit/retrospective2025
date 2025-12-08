@@ -53,7 +53,6 @@ const StampContainer = styled.View`
   shadow-opacity: 0.25;
   shadow-radius: 5px;
   elevation: 5;
-  padding: 10px;
 `;
 
 const StampText = styled.Text`
