@@ -21,7 +21,7 @@ const TitleCard = styled(Animatable.View)`
 `;
 
 const RetrospectiveText = styled.Text`
-  font-size: 52px;
+  font-size: 38px;
   font-weight: 900;
   color: #0A1B5C;
   text-align: center;
