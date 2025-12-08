@@ -110,8 +110,8 @@ const MetricLabel = styled.Text`
 const MetricCard = styled.View`
   background-color: #8BA3E8;
   border-radius: 12px;
-  padding: 12px 20px;
-  min-width: 90px;
+  padding: 10px 18px;
+  min-width: 85px;
   transform: rotate(3deg);
   shadow-color: #000;
   shadow-offset: 0px 4px;
@@ -122,11 +122,11 @@ const MetricCard = styled.View`
 `;
 
 const MetricValue = styled.Text`
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 900;
   color: #0A1B5C;
   text-align: center;
-  line-height: 36px;
+  line-height: 32px;
 `;
 
 const MetricUnit = styled.Text`
@@ -140,7 +140,7 @@ const MetricUnit = styled.Text`
 `;
 
 const MetricSubtext = styled.Text`
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   color: #0A1B5C;
   text-align: center;
@@ -149,19 +149,15 @@ const MetricSubtext = styled.Text`
 
 
 const BottomTextContainer = styled(Animatable.View)`
-  position: absolute;
-  bottom: 50px;
-  left: 0;
-  right: 0;
-  padding-horizontal: 24px;
+  align-self: stretch;
 `;
 
 const BottomText = styled.Text`
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
   color: #FFFFFF;
   text-align: center;
-  line-height: 24px;
+  line-height: 20px;
 `;
 
 interface Slide10MetricsProps {
@@ -207,6 +203,7 @@ export default function Slide10Metrics({
       source={require('../../assets/images/fond_bleu_nuage.png')}
       resizeMode="stretch"
     >
+      <View>
       {/* Magnifying glass at top */}
       <MagnifyingGlassContainer
         animation="bounceIn"
@@ -269,6 +266,7 @@ export default function Slide10Metrics({
           </MetricCard>
         </MetricRow>
       </MetricsContainer>
+      </View>
 
       {/* Bottom messages */}
       <BottomTextContainer

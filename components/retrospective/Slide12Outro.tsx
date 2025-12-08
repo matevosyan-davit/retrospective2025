@@ -13,7 +13,7 @@ const Container = styled(LinearGradient).attrs({
   height: ${SCREEN_HEIGHT}px;
   justify-content: center;
   align-items: center;
-  padding-horizontal: 24px;
+  padding-horizontal: 32px;
 `;
 
 const BackgroundImage = styled.Image`
@@ -28,7 +28,7 @@ const BackgroundImage = styled.Image`
 const MerciCard = styled(Animatable.View)`
   background-color: #0A1B5C;
   border-radius: 20px;
-  padding: 48px 40px;
+  padding: 40px 36px;
   transform: rotate(-3deg);
   shadow-color: #000;
   shadow-offset: 0px 8px;
@@ -40,34 +40,34 @@ const MerciCard = styled(Animatable.View)`
 `;
 
 const MerciText = styled.Text`
-  font-size: 72px;
+  font-size: 64px;
   font-weight: 900;
   color: #FFFFFF;
   text-transform: uppercase;
   letter-spacing: -2px;
   text-align: center;
-  line-height: 72px;
-  margin-bottom: 8px;
+  line-height: 64px;
+  margin-bottom: 6px;
 `;
 
 const AVousText = styled.Text`
-  font-size: 72px;
+  font-size: 64px;
   font-weight: 900;
   color: #FFFFFF;
   text-transform: uppercase;
   letter-spacing: -2px;
   text-align: center;
-  line-height: 72px;
+  line-height: 64px;
 `;
 
 const BisousBadge = styled.View`
   background-color: #8BA3E8;
   border-radius: 12px;
-  padding: 14px 32px;
+  padding: 12px 28px;
   transform: rotate(8deg);
   position: absolute;
-  bottom: -20px;
-  right: -10px;
+  bottom: -18px;
+  right: -8px;
   shadow-color: #000;
   shadow-offset: 0px 4px;
   shadow-opacity: 0.3;
@@ -76,7 +76,7 @@ const BisousBadge = styled.View`
 `;
 
 const BisousText = styled.Text`
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 900;
   color: #FFFFFF;
   text-transform: uppercase;
@@ -84,10 +84,10 @@ const BisousText = styled.Text`
 `;
 
 const HeartText = styled.Text`
-  font-size: 32px;
+  font-size: 28px;
   position: absolute;
-  top: -40px;
-  right: 20px;
+  top: -36px;
+  right: 18px;
 `;
 
 export default function Slide12Outro() {

@@ -7,20 +7,20 @@ const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 const Container = styled(ImageBackground)`
   width: 100%;
   height: ${SCREEN_HEIGHT}px;
-  padding-top: 70px;
-  padding-horizontal: 24px;
+  padding-vertical: 60px;
+  padding-horizontal: 32px;
   justify-content: space-between;
 `;
 
 const HeaderContainer = styled(Animatable.View)`
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 `;
 
 const RetrospectiveBanner = styled.View`
   background-color: #FF8EB5;
   border-radius: 14px;
-  padding: 20px 28px 32px 28px;
+  padding: 16px 24px 28px 24px;
   transform: rotate(-2deg);
   shadow-color: #000;
   shadow-offset: 0px 6px;
@@ -28,11 +28,11 @@ const RetrospectiveBanner = styled.View`
   shadow-radius: 8px;
   elevation: 8;
   position: relative;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 `;
 
 const RetrospectiveText = styled.Text`
-  font-size: 34px;
+  font-size: 28px;
   font-weight: 900;
   color: #0A1B5C;
   text-transform: uppercase;
@@ -44,11 +44,11 @@ const RetrospectiveText = styled.Text`
 const YearBadge = styled.View`
   background-color: #8BA3E8;
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 8px 18px;
   transform: rotate(8deg);
   position: absolute;
-  bottom: -12px;
-  right: 16px;
+  bottom: -10px;
+  right: 12px;
   shadow-color: #000;
   shadow-offset: 0px 4px;
   shadow-opacity: 0.3;
@@ -57,37 +57,37 @@ const YearBadge = styled.View`
 `;
 
 const YearText = styled.Text`
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 900;
   color: #FFFFFF;
   font-style: italic;
 `;
 
 const SubtitleContainer = styled(Animatable.View)`
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   padding-horizontal: 8px;
 `;
 
 const SubtitleText = styled.Text`
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 800;
   color: #FFFFFF;
   text-align: center;
-  line-height: 26px;
+  line-height: 23px;
 `;
 
 const StatsGrid = styled(Animatable.View)`
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
 `;
 
 const StatCard = styled.View`
   background-color: #FFFFFF;
-  border-radius: 14px;
-  padding: 12px;
-  width: 140px;
+  border-radius: 12px;
+  padding: 10px;
+  width: 135px;
   shadow-color: #000;
   shadow-offset: 0px 4px;
   shadow-opacity: 0.3;
@@ -98,13 +98,13 @@ const StatCard = styled.View`
 
 const StatValueCard = styled.View`
   background-color: #FF8EB5;
-  border-radius: 12px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 8px;
   transform: rotate(-5deg);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   align-items: center;
   justify-content: center;
-  min-height: 50px;
+  min-height: 45px;
 `;
 
 const StatValueCardAlt = styled(StatValueCard)`
@@ -112,11 +112,11 @@ const StatValueCardAlt = styled(StatValueCard)`
 `;
 
 const StatValue = styled.Text`
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 900;
   color: #0A1B5C;
   text-align: center;
-  line-height: 32px;
+  line-height: 28px;
 `;
 
 const StatValueWhite = styled(StatValue)`
@@ -124,33 +124,32 @@ const StatValueWhite = styled(StatValue)`
 `;
 
 const StatLabel = styled.Text`
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
   color: #0A1B5C;
   text-align: center;
-  line-height: 19px;
+  line-height: 17px;
 `;
 
 const EuroIcon = styled.Text`
   position: absolute;
-  top: 6px;
-  right: 10px;
-  font-size: 20px;
+  top: 4px;
+  right: 8px;
+  font-size: 18px;
   font-weight: 900;
   color: #0A1B5C;
 `;
 
 const BottomTextContainer = styled(Animatable.View)`
-  padding-horizontal: 24px;
-  padding-bottom: 30px;
+  align-self: stretch;
 `;
 
 const BottomText = styled.Text`
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
   color: #FFFFFF;
   text-align: center;
-  line-height: 23px;
+  line-height: 20px;
 `;
 
 interface Slide11SummaryProps {
@@ -175,6 +174,7 @@ export default function Slide11Summary({
       source={require('../../assets/images/fond_bleu_nuage.png')}
       resizeMode="stretch"
     >
+      <View>
       {/* Header with Retrospective banner */}
       <HeaderContainer
         animation="bounceIn"
@@ -239,6 +239,7 @@ export default function Slide11Summary({
           <StatLabel>note{'\n'}moyenne</StatLabel>
         </StatCard>
       </StatsGrid>
+      </View>
 
       {/* Bottom message */}
       <BottomTextContainer
