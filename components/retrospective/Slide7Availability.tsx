@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Animatable from 'react-native-animatable';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#FF6B9D', '#FF8EB5'],
@@ -11,7 +12,7 @@ const Container = styled(LinearGradient).attrs({
   padding-horizontal: 24px;
 `;
 
-const CalendarContainer = styled.View`
+const CalendarContainer = styled(Animatable.View)`
   align-items: center;
   margin-bottom: 40px;
 `;
@@ -57,7 +58,7 @@ const CalendarDay = styled.View`
   border-radius: 4px;
 `;
 
-const HeadlineContainer = styled.View`
+const HeadlineContainer = styled(Animatable.View)`
   margin-bottom: 30px;
 `;
 
@@ -69,7 +70,7 @@ const HeadlineText = styled.Text`
   line-height: 38px;
 `;
 
-const DaysContainer = styled.View`
+const DaysContainer = styled(Animatable.View)`
   flex-direction: row;
   align-items: center;
   margin-bottom: 40px;
@@ -104,7 +105,7 @@ const DaysLabel = styled.Text`
   margin-top: 10px;
 `;
 
-const BestDaySection = styled.View`
+const BestDaySection = styled(Animatable.View)`
   margin-bottom: 20px;
 `;
 
@@ -136,7 +137,7 @@ const BestDayText = styled.Text`
 `;
 
 
-const BottomTextContainer = styled.View`
+const BottomTextContainer = styled(Animatable.View)`
   position: absolute;
   bottom: 30px;
   left: 0;
@@ -164,7 +165,11 @@ export default function Slide7Availability({
   return (
     <Container>
       {/* Calendar icon at top */}
-      <CalendarContainer>
+      <CalendarContainer
+        animation="bounceIn"
+        duration={1000}
+        delay={200}
+      >
         <View>
           <CalendarHooks>
             <Hook />
@@ -181,12 +186,20 @@ export default function Slide7Availability({
       </CalendarContainer>
 
       {/* Headline */}
-      <HeadlineContainer>
+      <HeadlineContainer
+        animation="fadeInUp"
+        duration={800}
+        delay={600}
+      >
         <HeadlineText>Vous avez été dispo</HeadlineText>
       </HeadlineContainer>
 
       {/* Days available card */}
-      <DaysContainer>
+      <DaysContainer
+        animation="slideInLeft"
+        duration={800}
+        delay={1000}
+      >
         <DaysCard>
           <DaysNumber>{availabilityDays}</DaysNumber>
         </DaysCard>
@@ -194,7 +207,11 @@ export default function Slide7Availability({
       </DaysContainer>
 
       {/* Best day section */}
-      <BestDaySection>
+      <BestDaySection
+        animation="fadeInUp"
+        duration={800}
+        delay={1400}
+      >
         <BestDayLabel>Votre meilleur{'\n'}jour de livraison :</BestDayLabel>
         <BestDayCard>
           <BestDayText>{bestDay}</BestDayText>
@@ -202,7 +219,11 @@ export default function Slide7Availability({
       </BestDaySection>
 
       {/* Bottom message */}
-      <BottomTextContainer>
+      <BottomTextContainer
+        animation="fadeIn"
+        duration={800}
+        delay={1800}
+      >
         <BottomText>
           {availabilityDays >= 200
             ? "Quand vous vous y mettez, vous ne faites pas semblant 😄"

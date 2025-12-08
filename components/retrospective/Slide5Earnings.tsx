@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Animatable from 'react-native-animatable';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#FF6B9D', '#FF8EB5'],
@@ -11,7 +12,7 @@ const Container = styled(LinearGradient).attrs({
   padding-horizontal: 24px;
 `;
 
-const StarburstContainer = styled.View`
+const StarburstContainer = styled(Animatable.View)`
   position: absolute;
   top: 80px;
   right: 20px;
@@ -68,7 +69,7 @@ const Mouth = styled.View`
   border-top-width: 0;
 `;
 
-const MainEarningsCard = styled.View`
+const MainEarningsCard = styled(Animatable.View)`
   background-color: #0A1B5C;
   border-radius: 16px;
   padding: 32px;
@@ -100,7 +101,7 @@ const EuroSymbol = styled.Text`
   right: 16px;
 `;
 
-const HeadlineContainer = styled.View`
+const HeadlineContainer = styled(Animatable.View)`
   margin-top: 20px;
   margin-bottom: 24px;
 `;
@@ -121,7 +122,7 @@ const DontLabel = styled.Text`
   margin-left: 8px;
 `;
 
-const BreakdownItem = styled.View`
+const BreakdownItem = styled(Animatable.View)`
   flex-direction: row;
   align-items: center;
   margin-bottom: 12px;
@@ -167,7 +168,7 @@ const BreakdownLabel = styled.Text`
 `;
 
 
-const BottomTextContainer = styled.View`
+const BottomTextContainer = styled(Animatable.View)`
   position: absolute;
   bottom: 30px;
   left: 0;
@@ -211,7 +212,12 @@ export default function Slide5Earnings({
   return (
     <Container>
       {/* Starburst character top right */}
-      <StarburstContainer>
+      <StarburstContainer
+        animation="pulse"
+        iterationCount="infinite"
+        duration={2000}
+        delay={800}
+      >
         <Starburst>
           {Array.from({ length: 16 }).map((_, index) => (
             <View
@@ -245,13 +251,21 @@ export default function Slide5Earnings({
       </StarburstContainer>
 
       {/* Main earnings card */}
-      <MainEarningsCard>
+      <MainEarningsCard
+        animation="bounceIn"
+        duration={1000}
+        delay={200}
+      >
         <EarningsAmount>{totalEarnings}</EarningsAmount>
         <EuroSymbol>€</EuroSymbol>
       </MainEarningsCard>
 
       {/* Headline */}
-      <HeadlineContainer>
+      <HeadlineContainer
+        animation="fadeInUp"
+        duration={800}
+        delay={600}
+      >
         <HeadlineText>
           dans la poche{'\n'}juste en sauvant{'\n'}des colis.
         </HeadlineText>
@@ -264,7 +278,11 @@ export default function Slide5Earnings({
 
       {/* Bonus breakdown - only show if bonus > 0 */}
       {bonus > 0 && (
-        <BreakdownItem>
+        <BreakdownItem
+          animation="slideInLeft"
+          duration={600}
+          delay={1000}
+        >
           <BreakdownCard>
             <BreakdownAmount>{bonus}</BreakdownAmount>
             <BreakdownEuro>€</BreakdownEuro>
@@ -275,7 +293,11 @@ export default function Slide5Earnings({
 
       {/* Tips breakdown - only show if tips > 0 */}
       {tips > 0 && (
-        <BreakdownItem>
+        <BreakdownItem
+          animation="slideInLeft"
+          duration={600}
+          delay={1200}
+        >
           <BreakdownCard>
             <BreakdownAmount>{tips}</BreakdownAmount>
             <BreakdownEuro>€</BreakdownEuro>
@@ -285,7 +307,11 @@ export default function Slide5Earnings({
       )}
 
       {/* Bottom message */}
-      <BottomTextContainer>
+      <BottomTextContainer
+        animation="fadeIn"
+        duration={800}
+        delay={1600}
+      >
         <BottomText>
           {getMessage()}
         </BottomText>

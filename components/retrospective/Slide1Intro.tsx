@@ -1,5 +1,6 @@
 import { Text } from 'react-native';
 import styled from 'styled-components/native';
+import * as Animatable from 'react-native-animatable';
 
 const Content = styled.View`
   flex: 1;
@@ -8,7 +9,7 @@ const Content = styled.View`
   padding-horizontal: 24px;
 `;
 
-const TitleCard = styled.View`
+const TitleCard = styled(Animatable.View)`
   background-color: #FF6B9D;
   border-radius: 20px;
   padding-vertical: 32px;
@@ -28,7 +29,7 @@ const RetrospectiveText = styled.Text`
   line-height: 56px;
 `;
 
-const StampContainer = styled.View`
+const StampContainer = styled(Animatable.View)`
   position: absolute;
   bottom: -16px;
   right: 24px;
@@ -51,7 +52,7 @@ const StampText = styled.Text`
   letter-spacing: 2px;
 `;
 
-const Subtitle = styled.Text`
+const Subtitle = styled(Animatable.Text)`
   font-size: 24px;
   font-weight: 700;
   color: #FFFFFF;
@@ -62,15 +63,29 @@ const Subtitle = styled.Text`
 export default function Slide1Intro() {
   return (
     <Content>
-      <TitleCard>
+      <TitleCard
+        animation="zoomIn"
+        duration={1000}
+        delay={200}
+      >
         <RetrospectiveText>RÉTROSPECTIVE</RetrospectiveText>
 
-        <StampContainer>
+        <StampContainer
+          animation="bounceIn"
+          duration={800}
+          delay={800}
+        >
           <StampText>2025</StampText>
         </StampContainer>
       </TitleCard>
 
-      <Subtitle>Votre année de Keeper</Subtitle>
+      <Subtitle
+        animation="fadeIn"
+        duration={800}
+        delay={1200}
+      >
+        Votre année de Keeper
+      </Subtitle>
     </Content>
   );
 }

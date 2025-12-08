@@ -1,5 +1,6 @@
 import { Text } from 'react-native';
 import styled from 'styled-components/native';
+import * as Animatable from 'react-native-animatable';
 
 const Content = styled.View`
   flex: 1;
@@ -9,7 +10,7 @@ const Content = styled.View`
   padding-top: 40px;
 `;
 
-const HeadlineContainer = styled.View`
+const HeadlineContainer = styled(Animatable.View)`
   margin-bottom: 20px;
 `;
 
@@ -28,7 +29,7 @@ const HeadlinePart2 = styled.Text`
   text-align: center;
 `;
 
-const NumberCard = styled.View`
+const NumberCard = styled(Animatable.View)`
   background-color: #FF6B9D;
   border-radius: 16px;
   padding-vertical: 24px;
@@ -50,7 +51,7 @@ const NumberText = styled.Text`
   letter-spacing: -2px;
 `;
 
-const HeadlinePart3 = styled.Text`
+const HeadlinePart3 = styled(Animatable.Text)`
   font-size: 36px;
   font-weight: 800;
   color: #FFFFFF;
@@ -60,7 +61,7 @@ const HeadlinePart3 = styled.Text`
 `;
 
 
-const BottomTextContainer = styled.View`
+const BottomTextContainer = styled(Animatable.View)`
   position: absolute;
   bottom: 30px;
   left: 0;
@@ -87,20 +88,36 @@ export default function Slide4Neighbors({ neighborsHelped = 500 }: Slide4Neighbo
 
   return (
     <Content>
-      <HeadlineContainer>
+      <HeadlineContainer
+        animation="fadeInUp"
+        duration={800}
+        delay={200}
+      >
         <HeadlinePart1>Vous avez refait</HeadlinePart1>
         <HeadlinePart2>la journée de</HeadlinePart2>
       </HeadlineContainer>
 
-      <NumberCard>
+      <NumberCard
+        animation="bounceIn"
+        duration={1000}
+        delay={600}
+      >
         <NumberText>{neighborsHelped}</NumberText>
       </NumberCard>
 
-      <HeadlinePart3>
+      <HeadlinePart3
+        animation="slideInUp"
+        duration={600}
+        delay={1000}
+      >
         voisins dans{'\n'}votre quartier !
       </HeadlinePart3>
 
-      <BottomTextContainer>
+      <BottomTextContainer
+        animation="fadeIn"
+        duration={800}
+        delay={1400}
+      >
         <BottomText>
           {message}
         </BottomText>

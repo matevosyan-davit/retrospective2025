@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Animatable from 'react-native-animatable';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#1B2A7C', '#0A1B5C'],
@@ -11,7 +12,7 @@ const Container = styled(LinearGradient).attrs({
   padding-horizontal: 24px;
 `;
 
-const EarthCharacterContainer = styled.View`
+const EarthCharacterContainer = styled(Animatable.View)`
   align-items: flex-start;
   margin-left: 20px;
   margin-bottom: 40px;
@@ -110,7 +111,7 @@ const RightFoot = styled.View`
   border-radius: 8px;
 `;
 
-const HeadlineContainer = styled.View`
+const HeadlineContainer = styled(Animatable.View)`
   margin-bottom: 30px;
 `;
 
@@ -122,7 +123,7 @@ const HeadlineText = styled.Text`
   line-height: 42px;
 `;
 
-const CO2Container = styled.View`
+const CO2Container = styled(Animatable.View)`
   flex-direction: row;
   align-items: flex-start;
   margin-bottom: 40px;
@@ -163,7 +164,7 @@ const CO2Text = styled.Text`
 `;
 
 
-const BottomTextContainer = styled.View`
+const BottomTextContainer = styled(Animatable.View)`
   position: absolute;
   bottom: 30px;
   left: 0;
@@ -186,7 +187,12 @@ export default function Slide6Eco({ co2Saved = 100 }: Slide6EcoProps) {
   return (
     <Container>
       {/* Earth character with legs */}
-      <EarthCharacterContainer>
+      <EarthCharacterContainer
+        animation="bounce"
+        iterationCount="infinite"
+        duration={2000}
+        delay={600}
+      >
         <View style={{ height: 140 }}>
           <EarthCharacter>
             <EarthStripe1 />
@@ -210,12 +216,20 @@ export default function Slide6Eco({ co2Saved = 100 }: Slide6EcoProps) {
       </EarthCharacterContainer>
 
       {/* Headline */}
-      <HeadlineContainer>
+      <HeadlineContainer
+        animation="fadeInUp"
+        duration={800}
+        delay={200}
+      >
         <HeadlineText>Votre quartier{'\n'}respire mieux :</HeadlineText>
       </HeadlineContainer>
 
       {/* CO2 card and text */}
-      <CO2Container>
+      <CO2Container
+        animation="slideInLeft"
+        duration={800}
+        delay={800}
+      >
         <CO2Card>
           <CO2Number>{co2Saved}</CO2Number>
         </CO2Card>
@@ -226,7 +240,11 @@ export default function Slide6Eco({ co2Saved = 100 }: Slide6EcoProps) {
       </CO2Container>
 
       {/* Bottom message */}
-      <BottomTextContainer>
+      <BottomTextContainer
+        animation="fadeIn"
+        duration={800}
+        delay={1400}
+      >
         <BottomText>C'est votre côté écolo ça 💪</BottomText>
       </BottomTextContainer>
     </Container>

@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Animatable from 'react-native-animatable';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#1B2A7C', '#0A1B5C'],
@@ -11,7 +12,7 @@ const Container = styled(LinearGradient).attrs({
   padding-horizontal: 24px;
 `;
 
-const MagnifyingGlassContainer = styled.View`
+const MagnifyingGlassContainer = styled(Animatable.View)`
   align-items: center;
   margin-bottom: 30px;
 `;
@@ -88,7 +89,7 @@ const Sparkle3 = styled.View`
   right: 0px;
 `;
 
-const MetricsContainer = styled.View`
+const MetricsContainer = styled(Animatable.View)`
   gap: 20px;
   margin-bottom: 30px;
 `;
@@ -148,7 +149,7 @@ const MetricSubtext = styled.Text`
 `;
 
 
-const BottomTextContainer = styled.View`
+const BottomTextContainer = styled(Animatable.View)`
   position: absolute;
   bottom: 50px;
   left: 0;
@@ -205,7 +206,11 @@ export default function Slide10Metrics({
   return (
     <Container>
       {/* Magnifying glass at top */}
-      <MagnifyingGlassContainer>
+      <MagnifyingGlassContainer
+        animation="bounceIn"
+        duration={1000}
+        delay={200}
+      >
         <MagnifyingGlassWrapper>
           <GlassCircleOuter>
             <GlassCircleInner />
@@ -231,7 +236,11 @@ export default function Slide10Metrics({
       </MagnifyingGlassContainer>
 
       {/* Metrics */}
-      <MetricsContainer>
+      <MetricsContainer
+        animation="fadeInUp"
+        duration={800}
+        delay={600}
+      >
         {/* Success rate */}
         <MetricRow>
           <MetricLabel>Taux de succès{'\n'}livraison :</MetricLabel>
@@ -260,7 +269,11 @@ export default function Slide10Metrics({
       </MetricsContainer>
 
       {/* Bottom messages */}
-      <BottomTextContainer>
+      <BottomTextContainer
+        animation="fadeIn"
+        duration={800}
+        delay={1200}
+      >
         <BottomText>{performanceMessage}</BottomText>
         <BottomText style={{ marginTop: 12 }}>{achievementMessage}</BottomText>
       </BottomTextContainer>

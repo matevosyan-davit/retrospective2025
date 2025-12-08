@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Animatable from 'react-native-animatable';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#1B2A7C', '#0A1B5C'],
@@ -11,7 +12,7 @@ const Container = styled(LinearGradient).attrs({
   padding-horizontal: 24px;
 `;
 
-const FlameContainer = styled.View`
+const FlameContainer = styled(Animatable.View)`
   align-items: center;
   margin-bottom: 30px;
 `;
@@ -44,7 +45,7 @@ const FlameCore = styled.View`
   bottom: 5px;
 `;
 
-const HeadlineContainer = styled.View`
+const HeadlineContainer = styled(Animatable.View)`
   margin-bottom: 25px;
 `;
 
@@ -56,7 +57,7 @@ const HeadlineText = styled.Text`
   line-height: 34px;
 `;
 
-const WeeksContainer = styled.View`
+const WeeksContainer = styled(Animatable.View)`
   flex-direction: row;
   align-items: center;
   margin-bottom: 35px;
@@ -91,7 +92,7 @@ const WeeksLabel = styled.Text`
   flex: 1;
 `;
 
-const BadgeSection = styled.View`
+const BadgeSection = styled(Animatable.View)`
   margin-bottom: 30px;
 `;
 
@@ -181,7 +182,7 @@ const StarComponent = () => (
   </View>
 );
 
-const BottomTextContainer = styled.View`
+const BottomTextContainer = styled(Animatable.View)`
   position: absolute;
   bottom: 30px;
   left: 0;
@@ -208,7 +209,12 @@ export default function Slide8Streaks({
   return (
     <Container>
       {/* Flame icon at top */}
-      <FlameContainer>
+      <FlameContainer
+        animation="pulse"
+        iterationCount="infinite"
+        duration={1500}
+        delay={600}
+      >
         <FlameOuter>
           <FlameInner>
             <FlameCore />
@@ -217,12 +223,20 @@ export default function Slide8Streaks({
       </FlameContainer>
 
       {/* Headline */}
-      <HeadlineContainer>
+      <HeadlineContainer
+        animation="fadeInUp"
+        duration={800}
+        delay={200}
+      >
         <HeadlineText>Votre record de flammes est de</HeadlineText>
       </HeadlineContainer>
 
       {/* Weeks card */}
-      <WeeksContainer>
+      <WeeksContainer
+        animation="bounceIn"
+        duration={1000}
+        delay={800}
+      >
         <WeeksCard>
           <WeeksNumber>{flammesWeeks}</WeeksNumber>
         </WeeksCard>
@@ -230,7 +244,11 @@ export default function Slide8Streaks({
       </WeeksContainer>
 
       {/* Badge section */}
-      <BadgeSection>
+      <BadgeSection
+        animation="fadeInUp"
+        duration={800}
+        delay={1200}
+      >
         <BadgeLabel>Vous avez atteint le badge</BadgeLabel>
         <BadgeCard>
           <BadgeText>{flammeBadge}</BadgeText>
@@ -238,7 +256,11 @@ export default function Slide8Streaks({
       </BadgeSection>
 
       {/* Bottom message */}
-      <BottomTextContainer>
+      <BottomTextContainer
+        animation="fadeIn"
+        duration={800}
+        delay={1600}
+      >
         <BottomText>
           {flammesWeeks >= 32 ? "Respect ! 👑" : "Bravo, c'est déjà top 👋"}
         </BottomText>

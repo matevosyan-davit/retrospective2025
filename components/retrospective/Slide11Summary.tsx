@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Animatable from 'react-native-animatable';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#1B2A7C', '#0A1B5C'],
@@ -12,7 +13,7 @@ const Container = styled(LinearGradient).attrs({
   justify-content: space-between;
 `;
 
-const HeaderContainer = styled.View`
+const HeaderContainer = styled(Animatable.View)`
   align-items: center;
   margin-bottom: 20px;
 `;
@@ -63,7 +64,7 @@ const YearText = styled.Text`
   font-style: italic;
 `;
 
-const SubtitleContainer = styled.View`
+const SubtitleContainer = styled(Animatable.View)`
   margin-bottom: 16px;
   padding-horizontal: 8px;
 `;
@@ -76,7 +77,7 @@ const SubtitleText = styled.Text`
   line-height: 26px;
 `;
 
-const StatsGrid = styled.View`
+const StatsGrid = styled(Animatable.View)`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
@@ -140,7 +141,7 @@ const EuroIcon = styled.Text`
   color: #0A1B5C;
 `;
 
-const BottomTextContainer = styled.View`
+const BottomTextContainer = styled(Animatable.View)`
   padding-horizontal: 24px;
   padding-bottom: 30px;
 `;
@@ -173,7 +174,11 @@ export default function Slide11Summary({
   return (
     <Container>
       {/* Header with Retrospective banner */}
-      <HeaderContainer>
+      <HeaderContainer
+        animation="bounceIn"
+        duration={1000}
+        delay={200}
+      >
         <RetrospectiveBanner>
           <RetrospectiveText>RÉTROSPECTIVE</RetrospectiveText>
           <YearBadge>
@@ -183,14 +188,22 @@ export default function Slide11Summary({
       </HeaderContainer>
 
       {/* Subtitle */}
-      <SubtitleContainer>
+      <SubtitleContainer
+        animation="fadeInUp"
+        duration={800}
+        delay={600}
+      >
         <SubtitleText>
           Je suis dans le top {rank}{'\n'}des voisins-relais Pickme
         </SubtitleText>
       </SubtitleContainer>
 
       {/* Stats grid - 2x2 layout */}
-      <StatsGrid>
+      <StatsGrid
+        animation="fadeInUp"
+        duration={800}
+        delay={1000}
+      >
         {/* Parcels delivered - top left */}
         <StatCard>
           <StatValueCard>
@@ -226,7 +239,11 @@ export default function Slide11Summary({
       </StatsGrid>
 
       {/* Bottom message */}
-      <BottomTextContainer>
+      <BottomTextContainer
+        animation="fadeIn"
+        duration={800}
+        delay={1400}
+      >
         <BottomText>
           Qu'attendez-vous pour me{'\n'}choisir en point de livraison ? 🤭
         </BottomText>

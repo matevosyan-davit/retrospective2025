@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Animatable from 'react-native-animatable';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#FF6B9D', '#FF8EB5'],
@@ -12,7 +13,7 @@ const Container = styled(LinearGradient).attrs({
   align-items: center;
 `;
 
-const HeadlineContainer = styled.View`
+const HeadlineContainer = styled(Animatable.View)`
   margin-bottom: 40px;
 `;
 
@@ -24,7 +25,7 @@ const HeadlineText = styled.Text`
   line-height: 38px;
 `;
 
-const RatingCountCard = styled.View`
+const RatingCountCard = styled(Animatable.View)`
   background-color: #0A1B5C;
   border-radius: 16px;
   padding: 32px;
@@ -53,7 +54,7 @@ const RatingCountLabel = styled.Text`
   margin-top: 8px;
 `;
 
-const AverageRatingSection = styled.View`
+const AverageRatingSection = styled(Animatable.View)`
   align-items: center;
   margin-bottom: 50px;
 `;
@@ -100,7 +101,7 @@ const RatingNumberText = styled.Text`
   text-align: center;
 `;
 
-const BottomTextContainer = styled.View`
+const BottomTextContainer = styled(Animatable.View)`
   position: absolute;
   bottom: 30px;
   left: 0;
@@ -175,16 +176,28 @@ export default function Slide9Ratings({
 
   return (
     <Container>
-      <HeadlineContainer>
+      <HeadlineContainer
+        animation="fadeInUp"
+        duration={800}
+        delay={200}
+      >
         <HeadlineText>Vous avez reçu</HeadlineText>
       </HeadlineContainer>
 
-      <RatingCountCard>
+      <RatingCountCard
+        animation="bounceIn"
+        duration={1000}
+        delay={600}
+      >
         <RatingCountNumber>{ratingCount}</RatingCountNumber>
         <RatingCountLabel>évaluations</RatingCountLabel>
       </RatingCountCard>
 
-      <AverageRatingSection>
+      <AverageRatingSection
+        animation="fadeInUp"
+        duration={800}
+        delay={1000}
+      >
         <AverageRatingLabel>Note moyenne :</AverageRatingLabel>
 
         <StarsContainer>
@@ -196,7 +209,11 @@ export default function Slide9Ratings({
         </RatingNumberCard>
       </AverageRatingSection>
 
-      <BottomTextContainer>
+      <BottomTextContainer
+        animation="fadeIn"
+        duration={800}
+        delay={1600}
+      >
         <BottomText>Clairement, vous avez assuré 💛</BottomText>
       </BottomTextContainer>
     </Container>

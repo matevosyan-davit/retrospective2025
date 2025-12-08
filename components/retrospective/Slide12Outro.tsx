@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Animatable from 'react-native-animatable';
 
 const Container = styled(LinearGradient).attrs({
   colors: ['#FF8EB5', '#FF6B9D'],
@@ -12,7 +13,7 @@ const Container = styled(LinearGradient).attrs({
   padding-horizontal: 24px;
 `;
 
-const MerciCard = styled.View`
+const MerciCard = styled(Animatable.View)`
   background-color: #0A1B5C;
   border-radius: 20px;
   padding: 48px 40px;
@@ -80,7 +81,11 @@ const HeartText = styled.Text`
 export default function Slide12Outro() {
   return (
     <Container>
-      <MerciCard>
+      <MerciCard
+        animation="zoomIn"
+        duration={1000}
+        delay={200}
+      >
         <HeartText>❤️</HeartText>
         <MerciText>MERCI</MerciText>
         <AVousText>À VOUS</AVousText>
