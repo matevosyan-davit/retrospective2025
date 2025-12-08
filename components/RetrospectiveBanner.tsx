@@ -56,7 +56,7 @@ const StampContainer = styled.View`
 `;
 
 const StampText = styled.Text`
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 900;
   color: #FFFFFF;
   letter-spacing: 2px;
