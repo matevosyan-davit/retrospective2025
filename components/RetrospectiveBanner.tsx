@@ -50,7 +50,7 @@ const StampContainer = styled.View`
   transform: rotate(8deg);
   shadow-color: #000;
   shadow-offset: 0px 3px;
-  shadow-opacity: 0.25;
+  shadow-opacity: 0.5;
   shadow-radius: 5px;
   elevation: 5;
 `;
