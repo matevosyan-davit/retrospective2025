@@ -205,8 +205,8 @@ export default function Slide7Availability({
       <BottomTextContainer>
         <BottomText>
           {availabilityDays >= 200
-            ? "Quand vous vous y mettez,{'\n'}vous ne faites pas semblant 😄"
-            : "N'hésitez pas à en mettre plus{'\n'}si vous voulez recevoir + de colis !"}
+            ? "Quand vous vous y mettez, vous ne faites pas semblant 😄"
+            : "N'hésitez pas à en mettre plus si vous voulez recevoir + de colis !"}
         </BottomText>
       </BottomTextContainer>
     </Container>
