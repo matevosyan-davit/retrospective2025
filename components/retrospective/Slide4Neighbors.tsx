@@ -1,6 +1,10 @@
-import { Text } from 'react-native';
+import { Text, ImageBackground } from 'react-native';
 import styled from 'styled-components/native';
 import * as Animatable from 'react-native-animatable';
+
+const BackgroundImage = styled(ImageBackground)`
+  flex: 1;
+`;
 
 const Content = styled.View`
   flex: 1;
@@ -87,41 +91,46 @@ export default function Slide4Neighbors({ neighborsHelped = 500 }: Slide4Neighbo
     : 'Assez pour organiser un super apéro entre voisins 😌…';
 
   return (
-    <Content>
-      <HeadlineContainer
-        animation="fadeInUp"
-        duration={800}
-        delay={200}
-      >
-        <HeadlinePart1>Vous avez refait</HeadlinePart1>
-        <HeadlinePart2>la journée de</HeadlinePart2>
-      </HeadlineContainer>
+    <BackgroundImage
+      source={require('../../assets/images/fond_bleu_nuage.png')}
+      resizeMode="cover"
+    >
+      <Content>
+        <HeadlineContainer
+          animation="fadeInUp"
+          duration={800}
+          delay={200}
+        >
+          <HeadlinePart1>Vous avez refait</HeadlinePart1>
+          <HeadlinePart2>la journée de</HeadlinePart2>
+        </HeadlineContainer>
 
-      <NumberCard
-        animation="bounceIn"
-        duration={1000}
-        delay={600}
-      >
-        <NumberText>{neighborsHelped}</NumberText>
-      </NumberCard>
+        <NumberCard
+          animation="bounceIn"
+          duration={1000}
+          delay={600}
+        >
+          <NumberText>{neighborsHelped}</NumberText>
+        </NumberCard>
 
-      <HeadlinePart3
-        animation="slideInUp"
-        duration={600}
-        delay={1000}
-      >
-        voisins dans{'\n'}votre quartier !
-      </HeadlinePart3>
+        <HeadlinePart3
+          animation="slideInUp"
+          duration={600}
+          delay={1000}
+        >
+          voisins dans{'\n'}votre quartier !
+        </HeadlinePart3>
 
-      <BottomTextContainer
-        animation="fadeIn"
-        duration={800}
-        delay={1400}
-      >
-        <BottomText>
-          {message}
-        </BottomText>
-      </BottomTextContainer>
-    </Content>
+        <BottomTextContainer
+          animation="fadeIn"
+          duration={800}
+          delay={1400}
+        >
+          <BottomText>
+            {message}
+          </BottomText>
+        </BottomTextContainer>
+      </Content>
+    </BackgroundImage>
   );
 }

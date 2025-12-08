@@ -1,12 +1,8 @@
-import { Text, View } from 'react-native';
+import { Text, View, ImageBackground } from 'react-native';
 import styled from 'styled-components/native';
-import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 
-const Container = styled(LinearGradient).attrs({
-  colors: ['#1B2A7C', '#0A1B5C'],
-  locations: [0, 1],
-})`
+const Container = styled(ImageBackground)`
   flex: 1;
   padding-top: 80px;
   padding-horizontal: 24px;
@@ -185,7 +181,10 @@ interface Slide6EcoProps {
 
 export default function Slide6Eco({ co2Saved = 100 }: Slide6EcoProps) {
   return (
-    <Container>
+    <Container
+      source={require('../../assets/images/fond_bleu_nuage.png')}
+      resizeMode="cover"
+    >
       {/* Earth character with legs */}
       <EarthCharacterContainer
         animation="bounce"

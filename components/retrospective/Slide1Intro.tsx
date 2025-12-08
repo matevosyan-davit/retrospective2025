@@ -1,6 +1,10 @@
-import { Text } from 'react-native';
+import { Text, ImageBackground } from 'react-native';
 import styled from 'styled-components/native';
 import * as Animatable from 'react-native-animatable';
+
+const BackgroundImage = styled(ImageBackground)`
+  flex: 1;
+`;
 
 const Content = styled.View`
   flex: 1;
@@ -62,30 +66,35 @@ const Subtitle = styled(Animatable.Text)`
 
 export default function Slide1Intro() {
   return (
-    <Content>
-      <TitleCard
-        animation="zoomIn"
-        duration={1000}
-        delay={200}
-      >
-        <RetrospectiveText>RÉTROSPECTIVE</RetrospectiveText>
-
-        <StampContainer
-          animation="bounceIn"
-          duration={800}
-          delay={800}
+    <BackgroundImage
+      source={require('../../assets/images/fond_bleu_nuage.png')}
+      resizeMode="cover"
+    >
+      <Content>
+        <TitleCard
+          animation="zoomIn"
+          duration={1000}
+          delay={200}
         >
-          <StampText>2025</StampText>
-        </StampContainer>
-      </TitleCard>
+          <RetrospectiveText>RÉTROSPECTIVE</RetrospectiveText>
 
-      <Subtitle
-        animation="fadeIn"
-        duration={800}
-        delay={1200}
-      >
-        Votre année de Keeper
-      </Subtitle>
-    </Content>
+          <StampContainer
+            animation="bounceIn"
+            duration={800}
+            delay={800}
+          >
+            <StampText>2025</StampText>
+          </StampContainer>
+        </TitleCard>
+
+        <Subtitle
+          animation="fadeIn"
+          duration={800}
+          delay={1200}
+        >
+          Votre année de Keeper
+        </Subtitle>
+      </Content>
+    </BackgroundImage>
   );
 }

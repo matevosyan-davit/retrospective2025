@@ -1,6 +1,10 @@
-import { Text } from 'react-native';
+import { Text, ImageBackground } from 'react-native';
 import styled from 'styled-components/native';
 import * as Animatable from 'react-native-animatable';
+
+const BackgroundImage = styled(ImageBackground)`
+  flex: 1;
+`;
 
 const Content = styled.View`
   flex: 1;
@@ -142,71 +146,76 @@ export default function Slide2Parcels({ parcelsDelivered = 560, topPercentage = 
     : 'Bravo continuez comme ça ! 💪';
 
   return (
-    <Content>
-      <Headline
-        animation="fadeInUp"
-        duration={800}
-        delay={200}
-      >
-        Vous avez livré
-      </Headline>
+    <BackgroundImage
+      source={require('../../assets/images/fond_bleu_nuage.png')}
+      resizeMode="cover"
+    >
+      <Content>
+        <Headline
+          animation="fadeInUp"
+          duration={800}
+          delay={200}
+        >
+          Vous avez livré
+        </Headline>
 
-      <NumberCard
-        animation="bounceIn"
-        duration={1000}
-        delay={600}
-      >
-        <NumberText>{parcelsDelivered}</NumberText>
-      </NumberCard>
+        <NumberCard
+          animation="bounceIn"
+          duration={1000}
+          delay={600}
+        >
+          <NumberText>{parcelsDelivered}</NumberText>
+        </NumberCard>
 
-      <ColisText
-        animation="slideInUp"
-        duration={600}
-        delay={1000}
-      >
-        colis
-      </ColisText>
+        <ColisText
+          animation="slideInUp"
+          duration={600}
+          delay={1000}
+        >
+          colis
+        </ColisText>
 
-      <DecorationArea>
-        <ParcelContainer>
-          <Parcel
-            animation="pulse"
-            iterationCount="infinite"
-            duration={2000}
-            delay={1400}
-          >
-            <HeartsContainer
-              animation="fadeInUp"
-              duration={600}
-              delay={1600}
+        <DecorationArea>
+          <ParcelContainer>
+            <Parcel
+              animation="pulse"
+              iterationCount="infinite"
+              duration={2000}
+              delay={1400}
             >
-              <Heart>❤️</Heart>
-              <HeartSmall>❤️</HeartSmall>
-            </HeartsContainer>
+              <HeartsContainer
+                animation="fadeInUp"
+                duration={600}
+                delay={1600}
+              >
+                <Heart>❤️</Heart>
+                <HeartSmall>❤️</HeartSmall>
+              </HeartsContainer>
 
-            <ParcelBox>
-              <Eyes>
-                <Eye>
-                  <Pupil />
-                </Eye>
-                <Eye>
-                  <Pupil />
-                </Eye>
-              </Eyes>
-            </ParcelBox>
-          </Parcel>
-        </ParcelContainer>
-      </DecorationArea>
+              <ParcelBox>
+                <Eyes>
+                  <Eye>
+                    <Pupil />
+                  </Eye>
+                  <Eye>
+                    <Pupil />
+                  </Eye>
+                </Eyes>
+              </ParcelBox>
+            </Parcel>
+          </ParcelContainer>
+        </DecorationArea>
 
-      <BottomTextContainer
-        animation="fadeIn"
-        duration={800}
-        delay={2000}
-      >
-        <BottomText>
-          {message}
-        </BottomText>
-      </BottomTextContainer>
-    </Content>
+        <BottomTextContainer
+          animation="fadeIn"
+          duration={800}
+          delay={2000}
+        >
+          <BottomText>
+            {message}
+          </BottomText>
+        </BottomTextContainer>
+      </Content>
+    </BackgroundImage>
   );
 }
