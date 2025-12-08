@@ -190,7 +190,7 @@ export default function Slide9Ratings({
     <Container>
       <BackgroundImage
         source={require('@/assets/images/fond_rose_nuage..png')}
-        resizeMode="cover"
+        resizeMode="stretch"
       />
       <HeadlineContainer
         animation="fadeInUp"

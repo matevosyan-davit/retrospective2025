@@ -225,7 +225,7 @@ export default function Slide5Earnings({
     <Container>
       <BackgroundImage
         source={require('@/assets/images/fond_rose_nuage..png')}
-        resizeMode="cover"
+        resizeMode="stretch"
       />
       {/* Starburst character top right */}
       <StarburstContainer

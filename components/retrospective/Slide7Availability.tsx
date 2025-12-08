@@ -178,7 +178,7 @@ export default function Slide7Availability({
     <Container>
       <BackgroundImage
         source={require('@/assets/images/fond_rose_nuage..png')}
-        resizeMode="cover"
+        resizeMode="stretch"
       />
       {/* Calendar icon at top */}
       <CalendarContainer
