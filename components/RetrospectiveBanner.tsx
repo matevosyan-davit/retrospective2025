@@ -63,7 +63,7 @@ const StampText = styled.Text`
 `;
 
 const SubtitleText = styled.Text`
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 600;
   color: #FFFFFF;
   text-align: left;
